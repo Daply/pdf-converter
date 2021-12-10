@@ -1,22 +1,0 @@
-
-…
-java:S1104"jMake MAXIMUM_DISTANCE_BETWEEN_LINES a static final constant or non-public and provide accessors if needed.(¼€áşÿÿÿÿ
-„
-java:S3008"iRename this field "MAXIMUM_DISTANCE_BETWEEN_LINES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼€áşÿÿÿÿ
-„
-java:S3008
-"iRename this field "MINIMUM_DISTANCE_BETWEEN_LINES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë’„øüÿÿÿÿ
-k
-java:S1104"UMake THRESHOLD a static final constant or non-public and provide accessors if needed.(¹¸é¾
-_
-java:S1444
-"DMake this "public static MINIMUM_DISTANCE_BETWEEN_LINES" field final(ë’„øüÿÿÿÿ
-_
-java:S1444"DMake this "public static MAXIMUM_DISTANCE_BETWEEN_LINES" field final(¼€áşÿÿÿÿ
-…
-java:S1104
-"jMake MINIMUM_DISTANCE_BETWEEN_LINES a static final constant or non-public and provide accessors if needed.(ë’„øüÿÿÿÿ
-j
-java:S3008"TRename this field "THRESHOLD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹¸é¾
-E
-java:S1444"/Make this "public static THRESHOLD" field final(¹¸é¾
