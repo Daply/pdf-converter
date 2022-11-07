@@ -2,7 +2,7 @@ package pdftohtml.common;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import pdftohtml.domain.framework.Rectangle;
+import pdftohtml.domain.framework.FrameworkRectangle;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Stats {
@@ -13,7 +13,7 @@ public class Stats {
 
     public static float threshold = 2f;
 
-    public static boolean isDistanceBetweenLinesMoreThanNormal(Rectangle rectangle1, Rectangle rectangle2) {
+    public static boolean isDistanceBetweenLinesMoreThanNormal(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {
         float distance = (float) (rectangle2.getMinY() - rectangle1.getMaxY());
         return Math.abs(distance - maximumDistanceBetweenLines) < threshold;
     }

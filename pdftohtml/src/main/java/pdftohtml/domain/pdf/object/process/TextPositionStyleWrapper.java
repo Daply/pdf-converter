@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.process;
+package pdftohtml.domain.pdf.object.process;
 
 import org.apache.pdfbox.pdmodel.graphics.color.PDColor;
 import org.apache.pdfbox.pdmodel.graphics.state.RenderingMode;

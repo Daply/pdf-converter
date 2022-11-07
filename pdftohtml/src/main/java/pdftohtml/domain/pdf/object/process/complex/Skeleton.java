@@ -1,10 +1,10 @@
-package pdftohtml.domain.pdfdocument.object.process.complex;
+package pdftohtml.domain.pdf.object.process.complex;
 
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdfdocument.object.process.SkeletonType;
-import pdftohtml.domain.pdfdocument.object.process.container.Block;
-import pdftohtml.domain.pdfdocument.object.process.template.Divider;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.process.container.Block;
+import pdftohtml.domain.pdf.object.process.SkeletonType;
+import pdftohtml.domain.pdf.object.process.template.Divider;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pdftohtml.processors;
+package pdftohtml.processors.basic.objects.graphics;
 
 import lombok.Getter;
 import org.apache.pdfbox.contentstream.PDFStreamEngine;

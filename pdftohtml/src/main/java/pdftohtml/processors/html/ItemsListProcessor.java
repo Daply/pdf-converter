@@ -1,10 +1,10 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObjectType;
-import pdftohtml.domain.pdfdocument.object.middleware.list.ItemsList;
-import pdftohtml.domain.pdfdocument.object.middleware.list.ItemsListRowContent;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.middleware.list.ItemsList;
+import pdftohtml.domain.pdf.object.middleware.list.ItemsListRowContent;
 
 public class ItemsListProcessor extends HtmlTagProcessor {
 

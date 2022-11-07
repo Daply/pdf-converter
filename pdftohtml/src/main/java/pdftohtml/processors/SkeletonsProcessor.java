@@ -1,8 +1,8 @@
 package pdftohtml.processors;
 
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdfdocument.object.process.*;
-import pdftohtml.domain.pdfdocument.object.process.complex.Skeleton;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.process.SkeletonType;
+import pdftohtml.domain.pdf.object.process.complex.Skeleton;
 import pdftohtml.processors.middleware.LinesMiddlewareObjectsProcessor;
 
 import java.util.ArrayList;

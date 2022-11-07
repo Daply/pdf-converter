@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.process.container;
+package pdftohtml.domain.pdf.object.process.container;
 
 import org.junit.jupiter.api.Test;
 

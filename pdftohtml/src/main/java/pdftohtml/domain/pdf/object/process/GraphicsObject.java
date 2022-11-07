@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.process;
+package pdftohtml.domain.pdf.object.process;
 
 import lombok.Getter;
 import lombok.Setter;

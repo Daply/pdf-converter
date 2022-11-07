@@ -1,10 +1,10 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObjectType;
-import pdftohtml.domain.pdfdocument.object.middleware.TextParagraph;
-import pdftohtml.domain.pdfdocument.object.process.TextObject;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.middleware.TextParagraph;
+import pdftohtml.domain.pdf.object.process.TextObject;
 
 import java.util.Stack;
 

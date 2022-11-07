@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.middleware.table;
+package pdftohtml.domain.pdf.object.middleware.table;
 
 import java.util.ArrayList;
 import java.util.List;

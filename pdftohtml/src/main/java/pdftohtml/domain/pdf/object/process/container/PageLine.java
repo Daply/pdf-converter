@@ -1,15 +1,17 @@
-package pdftohtml.domain.pdfdocument.object.process.container;
+package pdftohtml.domain.pdf.object.process.container;
 
 import lombok.Getter;
 import lombok.Setter;
 import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdfdocument.object.process.TextObject;
-import pdftohtml.helpers.RectangleHelper;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.process.TextObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
+import static pdftohtml.helpers.RectangleHelper.subtractRectangle;
 
 @Getter
 public class PageLine {
@@ -67,11 +69,10 @@ public class PageLine {
     }
 
     public void addToRectangle(FrameworkRectangle rectangle) {
-        RectangleHelper helper = new RectangleHelper();
         if (this.rectangle.equals(FrameworkRectangle.EMPTY))
             this.rectangle = rectangle;
         else
-            this.rectangle = helper.combineTwoRectangles(this.rectangle, rectangle);
+            this.rectangle = combineTwoRectangles(this.rectangle, rectangle);
     }
 
     public void addToText(PdfDocumentObject object) {
@@ -82,11 +83,32 @@ public class PageLine {
     }
 
     public void subtractFromRectangle(FrameworkRectangle rectangle) {
-        RectangleHelper helper = new RectangleHelper();
-        this.rectangle = helper.subtractRectangle(this.rectangle, rectangle);
+        this.rectangle = subtractRectangle(this.rectangle, rectangle);
     }
 
     public void setObjects(List<PdfDocumentObject> objects) {
         this.objects = objects;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PageLine pageLine = (PageLine) o;
+        return lineNumber == pageLine.lineNumber &&
+                rectangle.equals(pageLine.rectangle) &&
+                text.toString().equals(pageLine.text.toString()) &&
+                objects.equals(pageLine.objects);
+    }
+
+    @Override
+    public int hashCode() {
+        int objectsHashcode = objects.stream()
+                .mapToInt(PdfDocumentObject::hashCode)
+                .sum();
+        return objectsHashcode +
+                text.toString().hashCode() +
+                rectangle.hashCode() +
+                lineNumber;
     }
 }

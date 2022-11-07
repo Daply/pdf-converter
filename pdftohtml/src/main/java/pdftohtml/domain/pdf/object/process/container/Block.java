@@ -1,12 +1,14 @@
-package pdftohtml.domain.pdfdocument.object.process.container;
+package pdftohtml.domain.pdf.object.process.container;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pdftohtml.domain.common.DocumentMetadata;
 import pdftohtml.domain.framework.FrameworkRectangle;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
@@ -17,6 +19,8 @@ public class Block {
     private FrameworkRectangle borderRectangle;
 
     private FrameworkRectangle contentRectangle;
+
+    private DocumentMetadata documentMetadata;
 
     public Block() {
         this.lines = new ArrayList<>();
@@ -81,6 +85,29 @@ public class Block {
     }
 
     public Block copy() {
-        return new Block(this.getLines(), this.getBorderRectangle(), this.getContentRectangle());
+        return new Block(
+                this.getLines(),
+                this.getBorderRectangle(),
+                this.getContentRectangle(),
+                this.getDocumentMetadata()
+        );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Block block = (Block) o;
+        return lines.equals(block.lines) &&
+                borderRectangle.equals(block.borderRectangle) &&
+                contentRectangle.equals(block.contentRectangle);
+    }
+
+    @Override
+    public int hashCode() {
+        int linesHashcode = this.lines.stream().mapToInt(PageLine::hashCode).sum();
+        return linesHashcode +
+                borderRectangle.hashCode() +
+                contentRectangle.hashCode();
     }
 }

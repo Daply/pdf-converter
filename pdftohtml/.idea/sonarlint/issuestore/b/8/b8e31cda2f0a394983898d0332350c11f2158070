@@ -1,0 +1,11 @@
+
+\
+java:S1118":Add a private constructor to hide the implicit public one.(ŠƒĞñûÿÿÿÿ8óÜàòÀ/
+t
+java:S1104"WMake xInaccuracy a static final constant or non-public and provide accessors if needed.(—¼ÛŸ8óÜàòÀ/
+y
+java:S1104"WMake yInaccuracy a static final constant or non-public and provide accessors if needed.(´·¶üÿÿÿÿ8ÏıáòÀ/
+N
+java:S1444"1Make this "public static xInaccuracy" field final(—¼ÛŸ8óÜàòÀ/
+S
+java:S1444"1Make this "public static yInaccuracy" field final(´·¶üÿÿÿÿ8ÏıáòÀ/

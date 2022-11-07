@@ -1,4 +1,4 @@
-package pdftohtml.processors.basic.objects;
+package pdftohtml.processors.basic.objects.text;
 
 import org.apache.pdfbox.text.TextPosition;
 import pdftohtml.domain.pdf.object.process.LinkObject;

@@ -1,4 +1,4 @@
-package pdftohtml.processors.basic.objects;
+package pdftohtml.processors.basic.objects.text;
 
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotation;
@@ -8,10 +8,11 @@ import pdftohtml.domain.framework.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.process.TextObject;
 import pdftohtml.domain.pdf.object.process.TextPositionStyleWrapper;
-import pdftohtml.helpers.RectangleHelper;
 
 import java.util.Arrays;
 import java.util.Objects;
+
+import static pdftohtml.helpers.RectangleHelper.createTextPositionRectangle;
 
 public class TextObjectsCreationFactory {
 
@@ -36,7 +37,6 @@ public class TextObjectsCreationFactory {
   }
 
   public boolean isLink(PDAnnotation link, TextPosition textPosition) {
-    RectangleHelper helper = new RectangleHelper();
     FrameworkRectangle linkRectangle =
         new FrameworkRectangle(
             link.getRectangle().getLowerLeftX(),
@@ -45,12 +45,7 @@ public class TextObjectsCreationFactory {
             link.getRectangle().getHeight()
         );
     FrameworkRectangle objectRectangle =
-        new FrameworkRectangle(
-              textPosition.getX(),
-              textPosition.getY(),
-              textPosition.getWidth(),
-              textPosition.getHeight()
-        );
+            createTextPositionRectangle(textPosition);
     return linkRectangle.containsWithXYInaccuracies(
             objectRectangle,
             Properties.xInaccuracy,

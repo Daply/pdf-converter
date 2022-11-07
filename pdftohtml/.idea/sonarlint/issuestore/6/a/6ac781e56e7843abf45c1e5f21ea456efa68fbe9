@@ -1,0 +1,17 @@
+
+J
+java:S1185u"(Remove this method to simply inherit it.(éÁğ½úÿÿÿÿ8¤‹ºà/
+^	java:S125È"<This block of commented-out lines of code should be removed.(õ‹ˆûüÿÿÿÿ8Õ‹ºà/
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(ËşÎ×ÿÿÿÿÿ8ì‹ºà/
+T
+java:S2696“"6Make the enclosing method "static" or remove this set.(²µ•„8í‹ºà/
+Y	java:S125Â"<This block of commented-out lines of code should be removed.(Ğ©ÚÍ8÷‹ºà/
+Y	java:S125Ç"<This block of commented-out lines of code should be removed.(›Ó²ô8û‹ºà/
+Y	java:S125É"<This block of commented-out lines of code should be removed.(ÖÂû8ş‹ºà/
+Y	java:S125÷"<This block of commented-out lines of code should be removed.(‚«çÇ8Œºà/
+U	java:S106ç"9Replace this use of System.out or System.err by a logger.(ÉÓÅe8¾Œºà/
+M
+java:S1144õ"/Remove this unused private "uniteLines" method.(ØÓÂù8£ºà/
+S
+java:S1144å"0Remove this unused private "drawForTest" method.(æÅ£æşÿÿÿÿ8¤ºà/

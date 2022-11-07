@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.middleware;
+package pdftohtml.domain.pdf.object.middleware;
 
 public enum MiddlewareObjectType {
 

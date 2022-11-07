@@ -1,10 +1,10 @@
 package pdftohtml;
 
-import pdftohtml.domain.framework.Rectangle;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdfdocument.object.process.TextObject;
-import pdftohtml.domain.pdfdocument.object.process.container.PageLine;
+import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.process.TextObject;
+import pdftohtml.domain.pdf.object.process.container.PageLine;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 public class TestUtils {
 
     public static List<PageLine> createMockPageLinesList(
-            List<Rectangle> rectangles
+            List<FrameworkRectangle> rectangles
     ) {
         return rectangles.stream().map(rectangle -> {
             PageLine line = new PageLine();
             line.addObject(
-                    TestUtils.createMockPdfTextObject(PdfDocumentObjectType.SIMPLE_TEXT, Rectangle.EMPTY)
+                    TestUtils.createMockPdfTextObject(PdfDocumentObjectType.SIMPLE_TEXT, FrameworkRectangle.EMPTY)
             );
             line.setRectangle(rectangle);
             return line;
@@ -26,7 +26,7 @@ public class TestUtils {
 
     public static PageLine createMockPageLine(
             List<PdfDocumentObject> objects,
-            Rectangle rectangle
+            FrameworkRectangle rectangle
     ) {
         PageLine pageLine = new PageLine();
         pageLine.setObjects(objects);
@@ -34,7 +34,7 @@ public class TestUtils {
         return pageLine;
     }
 
-    public static List<PdfDocumentObject> createMockPdfTextObjectsList(List<Rectangle> rectangles) {
+    public static List<PdfDocumentObject> createMockPdfTextObjectsList(List<FrameworkRectangle> rectangles) {
         return rectangles.stream().map(rectangle ->
                 createMockPdfTextObject(PdfDocumentObjectType.SIMPLE_TEXT, rectangle))
                 .collect(Collectors.toList());
@@ -42,7 +42,7 @@ public class TestUtils {
 
     public static PdfDocumentObject createMockPdfTextObject(
             PdfDocumentObjectType objectType,
-            Rectangle rectangle
+            FrameworkRectangle rectangle
     ) {
         PdfDocumentObject pdfDocumentObject = new TextObject();
         pdfDocumentObject.setObjectType(objectType);

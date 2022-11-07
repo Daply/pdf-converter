@@ -1,7 +1,8 @@
-package pdftohtml.domain.pdfdocument.object.process;
+package pdftohtml.domain.pdf.object.process;
 
 import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.helpers.RectangleHelper;
+
+import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
 
 public abstract class PdfDocumentObject {
 
@@ -18,8 +19,7 @@ public abstract class PdfDocumentObject {
   }
 
   public void addToRectangle(FrameworkRectangle rectangle) {
-    RectangleHelper helper = new RectangleHelper();
-    this.rectangle = helper.combineTwoRectangles(this.rectangle, rectangle);
+    this.rectangle = combineTwoRectangles(this.rectangle, rectangle);
   }
 
   public PdfDocumentObjectType getObjectType() {
@@ -30,4 +30,17 @@ public abstract class PdfDocumentObject {
     this.objectType = objectType;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    PdfDocumentObject that = (PdfDocumentObject) o;
+    return rectangle.equals(that.rectangle) && objectType == that.objectType;
+  }
+
+  @Override
+  public int hashCode() {
+    return rectangle.hashCode() +
+            objectType.ordinal();
+  }
 }

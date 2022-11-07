@@ -1,4 +1,4 @@
-package pdftohtml.processors.basic;
+package pdftohtml.processors.basic.objects.paths;
 
 import lombok.Getter;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -7,7 +7,6 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.rendering.PageDrawer;
 import org.apache.pdfbox.rendering.PageDrawerParameters;
 import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.processors.PrintPaths;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 @Getter
 public class StrokePathRenderer extends PDFRenderer {
 
-    private PrintPaths pageDrawer;
+    private StrokePathFinder pageDrawer;
     private List<FrameworkRectangle> paths = new ArrayList<>();
     private double pageWidth = 0;
     private double pageHeight = 0;
@@ -29,7 +28,7 @@ public class StrokePathRenderer extends PDFRenderer {
     @Override
     protected PageDrawer createPageDrawer(PageDrawerParameters parameters) throws IOException
     {
-        this.pageDrawer = new PrintPaths(parameters, pageWidth, pageHeight);
+        this.pageDrawer = new StrokePathFinder(parameters, pageWidth, pageHeight);
         return this.pageDrawer;
     }
 

@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdfdocument.object.process.template;
+package pdftohtml.domain.pdf.object.process.template;
 
 
 import lombok.AllArgsConstructor;

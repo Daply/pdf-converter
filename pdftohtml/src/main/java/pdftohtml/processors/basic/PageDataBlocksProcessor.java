@@ -1,4 +1,4 @@
-package pdftohtml.processors;
+package pdftohtml.processors.basic;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -9,9 +9,11 @@ import pdftohtml.domain.pdf.object.process.complex.Skeleton;
 import pdftohtml.domain.pdf.object.process.container.Block;
 import pdftohtml.domain.pdf.object.process.container.PageLine;
 import pdftohtml.domain.pdf.object.process.template.Divider;
-import pdftohtml.helpers.RectangleHelper;
 import pdftohtml.helpers.testing.LineObjectsPrinter;
 import pdftohtml.helpers.testing.PdfPageDrawer;
+import pdftohtml.processors.basic.objects.dividers.PageObjectsDividersProcessor;
+import pdftohtml.processors.basic.objects.graphics.GraphicsProcessor;
+import pdftohtml.processors.basic.objects.paths.StrokePathRenderer;
 
 import java.awt.*;
 import java.io.IOException;
@@ -22,6 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static pdftohtml.helpers.RectangleHelper.combineRectangles;
+
 /**
  * Creates skeletons of all page data from dividers border rectangles and lines of the page.
  * Skeleton is a rectangle with inner content, that can have the whole page content, to be a list
@@ -30,7 +34,7 @@ import java.util.stream.Collectors;
  *
  * @author Daria Pleshchankova
  */
-public class PageLinesProcessor {
+public class PageDataBlocksProcessor {
 
   /**
    * Main document for processing
@@ -40,17 +44,15 @@ public class PageLinesProcessor {
   /**
    * Processors
    */
-  private PageObjectsProcessor processor;
+  private PageTextObjectsProcessor pageTextObjectsProcessor;
   private GraphicsProcessor graphicsProcessor;
-  private StrokePathRenderer renderer;
+  private StrokePathRenderer strokePathRenderer;
+  private PageObjectsDividersProcessor pageObjectsDividersProcessor;
 
   private List<PageLine> pageLines;
   private List<Divider> dividers;
   private List<Skeleton> skeletons;
   private List<Block> blocks;
-
-  /** helpers */
-  private RectangleHelper helper;
 
   /**
    * Test mode flags
@@ -62,20 +64,20 @@ public class PageLinesProcessor {
   private boolean dividersTestMode = false;
   private boolean skeletonsTestMode = false;
 
-  public PageLinesProcessor(PDDocument document) {
+  public PageDataBlocksProcessor(PDDocument document) {
     this.pageLines = new ArrayList<>();
     this.dividers = new ArrayList<>();
     this.skeletons = new ArrayList<>();
     this.blocks = new ArrayList<>();
     this.document = document;
     try {
-      this.processor = new PageObjectsProcessor();
+      this.pageTextObjectsProcessor = new PageTextObjectsProcessor();
       this.graphicsProcessor = new GraphicsProcessor();
-      this.renderer = new StrokePathRenderer(document);
+      this.strokePathRenderer = new StrokePathRenderer(document);
+      this.pageObjectsDividersProcessor = new PageObjectsDividersProcessor(document);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.helper = new RectangleHelper();
   }
 
   public void processPage(int pageIndex) {
@@ -83,13 +85,14 @@ public class PageLinesProcessor {
     processPageText(pageIndex, page);
 
     // get text data blocks
-    this.blocks = processor.getBlocks();
+    this.blocks = pageTextObjectsProcessor.getBlocks();
 
     // extract all page graphics
     processPageGraphics(pageIndex, page);
 
-    // TODO sort all blocks by x that do not cross by y
-    // TODO find dividers between all blocks that cross by y
+    // TODO process blocks inside other blocks
+
+    pageObjectsDividersProcessor.findDividers(pageIndex, this.blocks);
 
     // get all page data dividers
     // TODO
@@ -107,12 +110,12 @@ public class PageLinesProcessor {
   }
 
   private void processPageText(int pageIndex, PDPage page) {
-    processor.setStartPage(pageIndex);
-    processor.setEndPage(pageIndex);
+    pageTextObjectsProcessor.setStartPage(pageIndex);
+    pageTextObjectsProcessor.setEndPage(pageIndex);
     try {
-      processor.setPage(page);
-      processor.processPage(page);
-      processor.getText(document);
+      pageTextObjectsProcessor.setPage(page);
+      pageTextObjectsProcessor.processPage(page);
+      pageTextObjectsProcessor.getText(document);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -141,12 +144,12 @@ public class PageLinesProcessor {
 
   private void processPageStrokePaths(int pageIndex) {
     try {
-      renderer.extractPaths(pageIndex - 1);
+      strokePathRenderer.extractPaths(pageIndex - 1);
     } catch (IOException e) {
       e.printStackTrace();
     }
     if (this.strokePathsTestMode) {
-      renderer.getPaths().forEach(path -> {
+      strokePathRenderer.getPaths().forEach(path -> {
         PdfPageDrawer.drawRectangle(
                 this.document,
                 this.document.getPages().get(pageIndex - 1),
@@ -349,7 +352,7 @@ public class PageLinesProcessor {
             usedDividers.add(j);
           }
         }
-        skeleton.setRectangle(this.helper.combineRectangles(dividersBorderRectangles));
+        skeleton.setRectangle(combineRectangles(dividersBorderRectangles));
         if (isPage) skeleton.setType(SkeletonType.PAGE);
         this.skeletons.add(skeleton);
       }

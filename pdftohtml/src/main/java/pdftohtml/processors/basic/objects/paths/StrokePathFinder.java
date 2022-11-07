@@ -1,4 +1,4 @@
-package pdftohtml.processors;
+package pdftohtml.processors.basic.objects.paths;
 
 import lombok.Getter;
 import org.apache.pdfbox.cos.COSName;
@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class Paths extends PageDrawer {
+public class StrokePathFinder extends PageDrawer {
 
     private List<FrameworkRectangle> paths = new ArrayList<>();
     private double pageWidth = 0;
     private double pageHeight = 0;
 
-    public Paths(
+    public StrokePathFinder(
             PageDrawerParameters parameters,
             double pageWidth,
             double pageHeight
@@ -37,12 +37,12 @@ public class Paths extends PageDrawer {
     }
 
     @Override
-    public void drawImage(PDImage pdImage) throws IOException {
+    public void drawImage(PDImage pdImage) {
 
     }
 
     @Override
-    public void shadingFill(COSName shadingName) throws IOException {
+    public void shadingFill(COSName shadingName) {
 
     }
 
@@ -52,8 +52,7 @@ public class Paths extends PageDrawer {
     }
 
     @Override
-    public void fillPath(int windingRule) throws IOException
-    {
+    public void fillPath(int windingRule) {
         printPath();
         //System.out.printf("Fill; windingrule: %s\n\n", windingRule);
         getLinePath().reset();

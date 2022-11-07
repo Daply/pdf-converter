@@ -1,7 +1,14 @@
-package pdftohtml.domain.pdfdocument.object.process;
+package pdftohtml.domain.pdf.object.process;
 
+import lombok.Getter;
+import lombok.Setter;
 import pdftohtml.helpers.TextObjectTypeResolver;
 
+import java.util.Arrays;
+import java.util.Objects;
+
+@Getter
+@Setter
 public class TextObject extends PdfDocumentObject {
 
     private StringBuffer textContent;
@@ -169,10 +176,41 @@ public class TextObject extends PdfDocumentObject {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TextObject that = (TextObject) o;
+        return Float.compare(that.fontSize, fontSize) == 0 &&
+                fontSizePt == that.fontSizePt &&
+                Float.compare(that.fontWeight, fontWeight) == 0 &&
+                underlinedText == that.underlinedText &&
+                strikeThroughText == that.strikeThroughText &&
+                italicText == that.italicText &&
+                boldText == that.boldText &&
+                rotated == that.rotated &&
+                textContent.toString().equals(that.textContent.toString()) &&
+                Objects.equals(fontFamily, that.fontFamily) &&
+                Objects.equals(fontName, that.fontName) &&
+                Arrays.equals(color, that.color) &&
+                textObjectType == that.textObjectType;
+    }
+
+    @Override
+    public int hashCode() {
+        return (textContent != null ? textContent.toString().hashCode() : 0) +
+                (fontFamily != null ? fontFamily.hashCode() : 0) +
+                (fontName != null ? fontName.hashCode() : 0) +
+                (int) fontSize +
+                fontSizePt +
+                (int) fontWeight +
+                textObjectType.ordinal();
+    }
+
+    @Override
     public String toString() {
         return "TextObject{" +
                 "textContent=" + textContent +
                 '}';
     }
-
 }

@@ -24,7 +24,7 @@ import pdftohtml.domain.pdf.object.process.container.PageLine;
 import pdftohtml.domain.pdf.object.process.template.Divider;
 import pdftohtml.helpers.RectangleHelper;
 import pdftohtml.helpers.testing.PdfPageDrawer;
-import pdftohtml.processors.basic.objects.TextObjectsCreationFactory;
+import pdftohtml.processors.basic.objects.text.TextObjectsCreationFactory;
 
 import java.awt.*;
 import java.io.IOException;
@@ -34,6 +34,8 @@ import java.util.List;
 import static pdftohtml.common.Globals.*;
 import static pdftohtml.common.Stats.maximumDistanceBetweenLines;
 import static pdftohtml.common.Stats.minimumDistanceBetweenLines;
+import static pdftohtml.helpers.RectangleHelper.*;
+import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
 
 /**
  * Parses pdf document page and gets all text data from it, all simple objects are created as
@@ -43,7 +45,7 @@ import static pdftohtml.common.Stats.minimumDistanceBetweenLines;
  * @author Daria Pleshchankova
  */
 @Log4j
-public class PageObjectsProcessor extends PDFTextStripper {
+public class PageTextObjectsProcessor extends PDFTextStripper {
 
     private boolean testMode = false;
 
@@ -69,9 +71,6 @@ public class PageObjectsProcessor extends PDFTextStripper {
 
     private Map<TextPosition, TextPositionStyleWrapper> lineCharacters;
     private List<TransformedRectangle> rectangles;
-
-    /** Helpers */
-    private RectangleHelper rectangleHelper;
 
     private TextObjectsCreationFactory textObjectsCreationFactory;
 
@@ -106,11 +105,9 @@ public class PageObjectsProcessor extends PDFTextStripper {
         this.allPageLinks = new ArrayList<>();
 
         this.rectangles = new ArrayList<>();
-
-        this.rectangleHelper = new RectangleHelper();
     }
 
-    public PageObjectsProcessor() throws IOException {
+    public PageTextObjectsProcessor() throws IOException {
         super();
         addOperators();
         init();
@@ -151,6 +148,9 @@ public class PageObjectsProcessor extends PDFTextStripper {
      * @param textPositions - list of text positions (characters with metadata)
      */
     private void gatherTextObjectsToLine(List<TextPosition> textPositions) {
+        if (this.pageLines.size() == 1) {
+            System.out.println();
+        }
         StringBuilder lineText = new StringBuilder();
         List<PdfDocumentObject> lineObjects = new ArrayList<>();
 
@@ -166,16 +166,14 @@ public class PageObjectsProcessor extends PDFTextStripper {
             if (!isNull(currentObject)) {
                 previousObjectRectangle = currentObject.getRectangle();
             }
-            currentObjectRectangle = this.rectangleHelper.createTextPositionRectangle(textPosition);
+            currentObjectRectangle = createTextPositionRectangle(textPosition);
 
             // set flag that two neighbour objects (ex. letters)
             // belong to different text objects (ex. words or sentences)
             // if the space between them is too big
-            if (previousObjectRectangle != null
-                    && rectangleHelper.checkXSpaceBetweenTwoRectangles(
-                        previousObjectRectangle, currentObjectRectangle, MINIMUM_DIVIDER_WIDTH
-                    )
-            ) {
+            if (checkXSpaceBetweenTwoRectangles(
+                    previousObjectRectangle, currentObjectRectangle, MINIMUM_DIVIDER_WIDTH
+            )) {
                 belongToDifferentObjects = true;
                 previousObject = currentObject;
                 currentObject = null;
@@ -231,8 +229,8 @@ public class PageObjectsProcessor extends PDFTextStripper {
         currentLine.addAllObjects(lineObjects);
 
         if (prevLineRectangle != null &&
-                (!rectangleHelper.haveTheSameStart(prevLineRectangle, currentLine.getRectangle()) ||
-                rectangleHelper.spaceByYBetweenTwoRectanglesIsMore(
+                (!haveTheSameStart(prevLineRectangle, currentLine.getRectangle()) ||
+                spaceByYBetweenTwoRectanglesIsMore(
                         prevLineRectangle,
                         currentLine.getRectangle(),
                         (float) (2 * currentLine.getRectangle().getHeight()))
@@ -266,7 +264,7 @@ public class PageObjectsProcessor extends PDFTextStripper {
                     .onTheSameLineHorizontallyWithYInaccuracy(
                             newLine.getRectangle(), Properties.yInaccuracy)) {
                 FrameworkRectangle betweenRectangle =
-                        this.rectangleHelper.createRectangleBetweenTwoRectangles(
+                        createRectangleBetweenTwoRectangles(
                                 line.getRectangle(), newLine.getRectangle()
                         );
                 line.addAllObjects(newLine.getObjects());
@@ -362,10 +360,10 @@ public class PageObjectsProcessor extends PDFTextStripper {
                             && (intersection >= (0.75 * rectangle.getWidth())
                             || intersection >= (0.75 * existingRectangle.getWidth()))) {
                         FrameworkRectangle intersectionRectangle =
-                                rectangleHelper.getIntersectionRectangle(existingRectangle, rectangle);
+                                getIntersectionRectangle(existingRectangle, rectangle);
                         existingDivider.setRectangle(intersectionRectangle);
                         existingDivider.setBorderRectangle(
-                                rectangleHelper.combineTwoRectangles(
+                                combineTwoRectangles(
                                         borderRectangle, existingDivider.getBorderRectangle()));
                         existingDivider.setNumberOfLastLine(currentLineNumber);
                         changedDividers.add(existingDivider);
@@ -438,12 +436,14 @@ public class PageObjectsProcessor extends PDFTextStripper {
             currentObject = this.textObjectsCreationFactory.create(textPosition, wrapper, null);
             currentObject.setRectangle(currentRectangle);
         } else {
-            if (currentObject.getObjectType().equals(PdfDocumentObjectType.SIMPLE_TEXT)
-                    && this.textObjectsCreationFactory.equalsByStyle(
-                    (TextObject) currentObject, textPosition, wrapper)) {
+            if (currentObject.getObjectType().equals(PdfDocumentObjectType.SIMPLE_TEXT) &&
+                    this.textObjectsCreationFactory.equalsByStyle(
+                    (TextObject) currentObject, textPosition, wrapper)
+            ) {
                 ((TextObject) currentObject).addToTextContent(textPosition.getUnicode());
                 currentObject.addToRectangle(currentRectangle);
-            } else if (!currentObject.getObjectType().equals(PdfDocumentObjectType.LINK)) {
+                //} else if (!currentObject.getObjectType().equals(PdfDocumentObjectType.LINK)) {
+            } else {
                 lineObjects.add(currentObject);
                 currentObject = this.textObjectsCreationFactory.create(textPosition, wrapper, null);
                 currentObject.setRectangle(currentRectangle);

@@ -1,6 +1,6 @@
-package pdftohtml.domain.pdfdocument.object.middleware.list;
+package pdftohtml.domain.pdf.object.middleware.list;
 
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
 
 import java.util.List;
 

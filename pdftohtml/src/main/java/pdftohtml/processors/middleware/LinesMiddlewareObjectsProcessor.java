@@ -1,13 +1,13 @@
 package pdftohtml.processors.middleware;
 
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdfdocument.object.middleware.TextParagraph;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdfdocument.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdfdocument.object.process.SkeletonType;
-import pdftohtml.domain.pdfdocument.object.process.TextObject;
-import pdftohtml.domain.pdfdocument.object.process.complex.Skeleton;
-import pdftohtml.domain.pdfdocument.object.process.container.PageLine;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.middleware.TextParagraph;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.process.SkeletonType;
+import pdftohtml.domain.pdf.object.process.TextObject;
+import pdftohtml.domain.pdf.object.process.complex.Skeleton;
+import pdftohtml.domain.pdf.object.process.container.PageLine;
 
 import java.util.ArrayList;
 import java.util.List;

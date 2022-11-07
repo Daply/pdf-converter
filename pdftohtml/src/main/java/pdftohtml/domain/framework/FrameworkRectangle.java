@@ -2,6 +2,7 @@ package pdftohtml.domain.framework;
 
 import lombok.Getter;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -18,15 +19,14 @@ import java.util.Objects;
  *              maxX
  *              maxY
  *
- * (Partial copy of JavaFx Rectangle class)
  */
 @Getter
-public class Rectangle {
+public class FrameworkRectangle {
 
   /**
    * Default empty rectangle
    */
-  public static final Rectangle EMPTY = new Rectangle(0, 0, 0, 0);
+  public static final FrameworkRectangle EMPTY = new FrameworkRectangle(0, 0, 0, 0);
 
   /**
    * Upper-left corner x coordinate
@@ -52,17 +52,17 @@ public class Rectangle {
 
   private double height;
 
-  public Rectangle() {}
+  public FrameworkRectangle() {}
 
   /**
-   * Creates a new instance of {@link Rectangle}.
+   * Creates a new instance of {@link FrameworkRectangle}.
    *
-   * @param minX The x coordinate of the upper-left corner of the {@link Rectangle}
-   * @param minY The y coordinate of the upper-left corner of the {@link Rectangle}
-   * @param width The width of the {@link Rectangle}
-   * @param height The height of the {@link Rectangle}
+   * @param minX The x coordinate of the upper-left corner of the {@link FrameworkRectangle}
+   * @param minY The y coordinate of the upper-left corner of the {@link FrameworkRectangle}
+   * @param width The width of the {@link FrameworkRectangle}
+   * @param height The height of the {@link FrameworkRectangle}
    */
-  public Rectangle(double minX, double minY, double width, double height) {
+  public FrameworkRectangle(double minX, double minY, double width, double height) {
     if (width < 0 || height < 0) {
       throw new IllegalArgumentException("Both width and height must be >= 0");
     }
@@ -76,12 +76,12 @@ public class Rectangle {
   }
 
   /**
-   * Creates a new instance of {@link Rectangle}.
+   * Creates a new instance of {@link FrameworkRectangle}.
    *
-   * @param minX The x coordinate of the upper-left corner of the {@link Rectangle}
-   * @param minY The y coordinate of the upper-left corner of the {@link Rectangle}
-   * @param maxX The x coordinate of the lower-right corner of the {@link Rectangle}
-   * @param maxY The y coordinate of the lower-right corner of the {@link Rectangle}
+   * @param minX The x coordinate of the upper-left corner of the {@link FrameworkRectangle}
+   * @param minY The y coordinate of the upper-left corner of the {@link FrameworkRectangle}
+   * @param maxX The x coordinate of the lower-right corner of the {@link FrameworkRectangle}
+   * @param maxY The y coordinate of the lower-right corner of the {@link FrameworkRectangle}
    */
   public void setRectangleCoordinates(double minX, double minY, double maxX, double maxY) {
     this.minX = minX;
@@ -94,32 +94,32 @@ public class Rectangle {
 
   /**
    * Checks if the specified (x, y) coordinates are inside the boundary
-   * of {@link Rectangle}.
+   * of {@link FrameworkRectangle}.
    *
    * @param x the specified x coordinate
    * @param y the specified y coordinate
    * @return true if the specified (x, y) coordinates are inside the
-   *         boundary of this {@link Rectangle}; false otherwise
+   *         boundary of this {@link FrameworkRectangle}; false otherwise
    */
   public boolean contains(double x, double y) {
     return x >= minX && x <= maxX && y >= minY && y <= maxY;
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} entirely contains the
-   * specified Rectangle {@link Rectangle}.
+   * Checks if the interior of this {@link FrameworkRectangle} entirely contains the
+   * specified Rectangle {@link FrameworkRectangle}.
    *
    * @param rectangle The specified Rectangle
    * @return true if the specified Rectangle is inside the
-   *         boundary of this {@link Rectangle}; false otherwise
+   *         boundary of this {@link FrameworkRectangle}; false otherwise
    */
-  public boolean contains(Rectangle rectangle) {
+  public boolean contains(FrameworkRectangle rectangle) {
     if (rectangle == null) return false;
     return rectangle.minX >= minX && rectangle.minY >= minY && rectangle.maxX <= maxX && rectangle.maxY <= maxY;
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} entirely contains the
+   * Checks if the interior of this {@link FrameworkRectangle} entirely contains the
    * specified rectangular area.
    *
    * @param x the x coordinate of the upper-left corner of the specified
@@ -128,7 +128,7 @@ public class Rectangle {
    *          rectangular area
    * @param w the width of the specified rectangular area
    * @param h the height of the specified rectangular area
-   * @return true if the interior of this {@link Rectangle} entirely contains
+   * @return true if the interior of this {@link FrameworkRectangle} entirely contains
    *         the specified rectangular area; false otherwise
    */
   public boolean contains(double x, double y, double w, double h) {
@@ -136,14 +136,14 @@ public class Rectangle {
   }
 
   /**
-   * Check if this rectangle {@link Rectangle} contains the specified
+   * Check if this rectangle {@link FrameworkRectangle} contains the specified
    * rectangular area with current x and y inaccuracy
    *
    * @param rectangle - specified rectangular area
    * @return true - if rectangle1 contains rectangle2, otherwise false
    */
   public boolean containsWithXYInaccuracies(
-          Rectangle rectangle,
+          FrameworkRectangle rectangle,
           double xInaccuracy,
           double yInaccuracy
   ) {
@@ -154,7 +154,7 @@ public class Rectangle {
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} contains the interior
+   * Checks if the interior of this {@link FrameworkRectangle} contains the interior
    * of a specified rectangular area by x coordinate with specified inaccuracy.
    *
    * @param rectangleMinX the x coordinate of the upper-left corner of the specified
@@ -162,7 +162,7 @@ public class Rectangle {
    * @param rectangleMaxX the x coordinate of the upper-left corner of the specified
    *                      rectangular area
    * @param inaccuracy inaccuracy by x
-   * @return true if the interior of this {@link Rectangle} contains the interior
+   * @return true if the interior of this {@link FrameworkRectangle} contains the interior
    *         of the rectangular area by x coordinate with specified inaccuracy
    */
   public boolean containsByXWithInaccuracy(
@@ -175,7 +175,7 @@ public class Rectangle {
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} contains the interior
+   * Checks if the interior of this {@link FrameworkRectangle} contains the interior
    * of a specified rectangular area by y coordinate with specified inaccuracy.
    *
    * @param rectangleMinY the y coordinate of the upper-left corner of the specified
@@ -183,7 +183,7 @@ public class Rectangle {
    * @param rectangleMaxY the y coordinate of the upper-left corner of the specified
    *                      rectangular area
    * @param inaccuracy inaccuracy by y
-   * @return true if the interior of this {@link Rectangle} contains the interior
+   * @return true if the interior of this {@link FrameworkRectangle} contains the interior
    *         of the rectangular area by y coordinate with specified inaccuracy
    */
   public boolean containsByYWithInaccuracy(
@@ -196,20 +196,20 @@ public class Rectangle {
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} intersects the interior
+   * Checks if the interior of this {@link FrameworkRectangle} intersects the interior
    * of a specified Rectangle.
    *
    * @param rectangle The specified Rectangle
-   * @return true if the interior of this {@link Rectangle} and the interior
+   * @return true if the interior of this {@link FrameworkRectangle} and the interior
    *         of the specified Rectangle intersect
    */
-  public boolean intersects(Rectangle rectangle) {
+  public boolean intersects(FrameworkRectangle rectangle) {
     if (rectangle == null) return false;
     return rectangle.maxX > minX && rectangle.maxY > minY && rectangle.minX < maxX && rectangle.minY < maxY;
   }
 
   /**
-   * Checks if the interior of this {@link Rectangle} intersects the interior
+   * Checks if the interior of this {@link FrameworkRectangle} intersects the interior
    * of a specified rectangular area.
    *
    * @param x the x coordinate of the upper-left corner of the specified
@@ -218,7 +218,7 @@ public class Rectangle {
    *          rectangular area
    * @param w the width of the specified rectangular area
    * @param h the height of the specified rectangular area
-   * @return true if the interior of this {@link Rectangle} and the interior
+   * @return true if the interior of this {@link FrameworkRectangle} and the interior
    *         of the rectangular area intersect
    */
   public boolean intersects(double x, double y, double w, double h) {
@@ -227,7 +227,7 @@ public class Rectangle {
 
   /**
    * Returns width of the intersection of the interior of
-   * this {@link Rectangle} and the interior of a specified
+   * this {@link FrameworkRectangle} and the interior of a specified
    * rectangular area horizontally.
    *
    *  Situations:
@@ -252,7 +252,7 @@ public class Rectangle {
    * @param rectangle specified rectangular area
    * @return intersection width
    */
-  public float intersectsHorizontally(Rectangle rectangle) {
+  public float intersectsHorizontally(FrameworkRectangle rectangle) {
     if (rectangle == null) return 0f;
     float intersection = 0f;
     float x1 = (float) Math.max(this.getMinX(), rectangle.getMinX());
@@ -266,7 +266,7 @@ public class Rectangle {
 
   /**
    * Returns height of the intersection of the interior of
-   * this {@link Rectangle} and the interior of a specified
+   * this {@link FrameworkRectangle} and the interior of a specified
    * rectangular area vertically.
    *
    *  Situations:
@@ -299,7 +299,7 @@ public class Rectangle {
    * @param rectangle specified rectangular area
    * @return intersection height
    */
-  public float intersectsVertically(Rectangle rectangle) {
+  public float intersectsVertically(FrameworkRectangle rectangle) {
     if (rectangle == null) return 0f;
     float intersection = 0f;
     float y1 = (float) Math.max(this.getMinY(), rectangle.getMinY());
@@ -319,56 +319,56 @@ public class Rectangle {
    *     ------------
    *
    * Get intersection rectangle between
-   * this rectangle {@link Rectangle} and the other one,
-   * with which this rectangle {@link Rectangle} intersects
+   * this rectangle {@link FrameworkRectangle} and the other one,
+   * with which this rectangle {@link FrameworkRectangle} intersects
    *
    * @param rectangle specified rectangular area
    * @return intersection rectangle
    */
-  public Rectangle getIntersection(Rectangle rectangle) {
+  public FrameworkRectangle getIntersection(FrameworkRectangle rectangle) {
     if (!this.intersects(rectangle)) return null;
     float xMin = (float) Math.max(this.getMinX(), rectangle.getMinX());
     float xMax = (float) Math.min(this.getMaxX(), rectangle.getMaxX());
     float yMin = (float) Math.max(this.getMinY(), rectangle.getMinY());
     float yMax = (float) Math.min(this.getMaxY(), rectangle.getMaxY());
-    return new Rectangle(xMin, yMin, xMax - xMin, yMax - yMin);
+    return new FrameworkRectangle(xMin, yMin, xMax - xMin, yMax - yMin);
   }
 
-  public float getIntersectionArea(Rectangle rectangle) {
-    Rectangle intersectionRectangle = this.getIntersection(rectangle);
+  public float getIntersectionArea(FrameworkRectangle rectangle) {
+    FrameworkRectangle intersectionRectangle = this.getIntersection(rectangle);
     return intersectionRectangle != null ? (float) intersectionRectangle.getArea() : 0f;
   }
 
   /**
-   * Checks if the this rectangle {@link Rectangle} stands
+   * Checks if the this rectangle {@link FrameworkRectangle} stands
    * before the specified rectangular area by x coordinate
    *
    * @param rectangle specified rectangular area
    * @return true, if this rectangle stands before
    *         the specified rectangular area by x coordinate
    */
-  public boolean isBeforeHorizontallyWithXInaccuracy(Rectangle rectangle, double xInaccuracy) {
+  public boolean isBeforeHorizontallyWithXInaccuracy(FrameworkRectangle rectangle, double xInaccuracy) {
     if (rectangle == null) return false;
     return this.getMinX() < rectangle.getMinX() &&
             this.getMaxX() <= rectangle.getMinX() + xInaccuracy;
   }
 
   /**
-   * Checks if the this rectangle {@link Rectangle} stands
+   * Checks if the this rectangle {@link FrameworkRectangle} stands
    * before the specified rectangular area by y coordinate
    *
    * @param rectangle specified rectangular area
    * @return true, if this rectangle stands before
    *         the specified rectangular area by y coordinate
    */
-  public boolean isBeforeVerticallyWithYInaccuracy(Rectangle rectangle, double yInaccuracy) {
+  public boolean isBeforeVerticallyWithYInaccuracy(FrameworkRectangle rectangle, double yInaccuracy) {
     if (rectangle == null) return false;
     return this.getMinY() < rectangle.getMinY() &&
             this.getMaxY() <= rectangle.getMinY() + yInaccuracy;
   }
 
   /**
-   * Checks if the this rectangle {@link Rectangle} stands
+   * Checks if the this rectangle {@link FrameworkRectangle} stands
    * on the same line horizontally with the
    * specified rectangular area
    *
@@ -376,7 +376,7 @@ public class Rectangle {
    * @return true, if this rectangle stands on the same line
    * horizontally with the specified rectangular area
    */
-  public boolean onTheSameLineHorizontallyWithYInaccuracy(Rectangle rectangle, double yInaccuracy) {
+  public boolean onTheSameLineHorizontallyWithYInaccuracy(FrameworkRectangle rectangle, double yInaccuracy) {
     if (rectangle == null) return false;
     return Math.abs(this.getMinY() - rectangle.getMinY()) <= yInaccuracy &&
             Math.abs(this.getMaxY() - rectangle.getMaxY()) <= yInaccuracy;
@@ -388,7 +388,7 @@ public class Rectangle {
    * @param rectangle specified rectangular area
    * @return list of rectangles
    */
-  public List<Rectangle> cut(Rectangle rectangle, double xInaccuracy) {
+  public List<FrameworkRectangle> cut(FrameworkRectangle rectangle, double xInaccuracy) {
     if (Math.abs(this.getMinX() - rectangle.getMinX()) <= xInaccuracy &&
             Math.abs(this.getMaxX() - rectangle.getMaxX()) <= xInaccuracy) {
       return Collections.emptyList();
@@ -399,16 +399,16 @@ public class Rectangle {
     if (Math.abs(this.getMinX() - rectangle.getMinX()) <= xInaccuracy) {
       float xMinLeft = (float) rectangle.getMaxX();
       float xMaxLeft = (float) this.getMaxX();
-      Rectangle cutRectangle =
-              new Rectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
+      FrameworkRectangle cutRectangle =
+              new FrameworkRectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
       return Collections.singletonList(cutRectangle);
     }
     // if rectangle ends at the same coordinate as this rectangle
     else if (Math.abs(this.getMaxX() - rectangle.getMaxX()) <= xInaccuracy) {
       float xMinLeft = (float) this.getMinX();
       float xMaxLeft = (float) rectangle.getMinX();
-      Rectangle cutRectangle =
-              new Rectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
+      FrameworkRectangle cutRectangle =
+              new FrameworkRectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
       return Collections.singletonList(cutRectangle);
     }
     // if rectangle stands inside of x range of this rectangle
@@ -416,22 +416,29 @@ public class Rectangle {
             this.getMinX() < rectangle.getMaxX() && this.getMaxX() > rectangle.getMaxX()) {
       float xMinLeft = (float) this.getMinX();
       float xMaxLeft = (float) rectangle.getMinX();
-      Rectangle leftRectangle =
-              new Rectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
+      FrameworkRectangle leftRectangle =
+              new FrameworkRectangle(xMinLeft, yMin, xMaxLeft - xMinLeft, yMax - yMin);
       float xMinRight = (float) rectangle.getMaxX();
       float xMaxRight = (float) this.getMaxX();
-      Rectangle rightRectangle =
-              new Rectangle(xMinRight, yMin, xMaxRight - xMinRight, yMax - yMin);
+      FrameworkRectangle rightRectangle =
+              new FrameworkRectangle(xMinRight, yMin, xMaxRight - xMinRight, yMax - yMin);
       return Arrays.asList(leftRectangle, rightRectangle);
     }
     return Collections.emptyList();
   }
 
+  public static FrameworkRectangle convertFromPdfRectangle(Rectangle rectangle) {
+    return new FrameworkRectangle(
+            rectangle.getMinX(), rectangle.getMinY(),
+            rectangle.getWidth(), rectangle.getHeight()
+    );
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (obj == this) return true;
-    if (obj instanceof Rectangle) {
-      Rectangle other = (Rectangle) obj;
+    if (obj instanceof FrameworkRectangle) {
+      FrameworkRectangle other = (FrameworkRectangle) obj;
       return minX == other.minX
               && minY == other.minY
               && width == other.width
@@ -445,7 +452,7 @@ public class Rectangle {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minX, minY, maxX, maxY, width, height);
+    return 31 * (int)(minX + minY + maxX + maxY) + 11 * (int)(width + height);
   }
 
   @Override public String toString() {

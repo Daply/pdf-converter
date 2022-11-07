@@ -1,7 +1,7 @@
 package pdftohtml.processors.html;
 
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdfdocument.object.middleware.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.middleware.MiddlewareObjectType;
 
 import java.util.List;
 
