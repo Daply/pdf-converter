@@ -41,9 +41,12 @@ public class RectangleHelper {
      * @return new rectangle {@link FrameworkRectangle},
      *         which is a unit of two rectangles
      */
-    public static FrameworkRectangle uniteTwoRectanglesByXMinimally(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {
+    public static FrameworkRectangle uniteTwoRectanglesByXMinimally(
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2
+    ) {
         if (rectangle1 == null || rectangle2 == null) return null;
-        float xMin = (float) Math.min(rectangle1.getMinX(), rectangle2.getMinX());
+        float xMin = (float) Math.max(rectangle1.getMinX(), rectangle2.getMinX());
         float xMax = (float) Math.min(rectangle1.getMaxX(), rectangle2.getMaxX());
         float yMin = (float) Math.min(rectangle1.getMinY(), rectangle2.getMinY());
         float yMax = (float) Math.max(rectangle1.getMaxY(), rectangle2.getMaxY());

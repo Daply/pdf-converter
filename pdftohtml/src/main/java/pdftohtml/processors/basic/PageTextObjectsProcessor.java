@@ -305,106 +305,6 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
         }
     }
 
-    /** Unite all found dividers in text */
-    private void uniteDividers(int currentLineNumber) {
-        validateLineNumber(currentLineNumber);
-//        for (FrameworkRectangle rectangle : this.currentBetweenObjectsRectangles) {
-//            FrameworkRectangle borderRectangle =
-//                    new FrameworkRectangle(
-//                            0,
-//                            rectangle.getMinY(),
-//                            this.page.getCropBox().getWidth(),
-//                            rectangle.getHeight()
-//                    );
-//            if (!uniteDividerWithNewRectangle(rectangle, borderRectangle, currentLineNumber)) {
-//                createDivider(rectangle, borderRectangle, currentLineNumber);
-//            }
-//        }
-    }
-
-    /**
-     * Combine new rectangle with existing divider
-     *
-     * 1) If existing divider is on the previous line ->
-     * combining them by intersection
-     *   ---------------
-     *   |             |
-     *   ______________
-     *   ___________
-     *   |         |
-     *   ___________
-     *
-     * 2) If existing divider is on the same line ->
-     *
-     *  2.1) If
-     *  ----------------------
-     *  |    |        |      |
-     *  ----------------------
-     *
-     * @param rectangle - dividers rectangle
-     * @param borderRectangle - dividers possible content border rectangle
-     * @param currentLineNumber - current line number
-     * @return true - if divider rectangle was combined with new rectangle, false otherwise
-     */
-    private boolean uniteDividerWithNewRectangle(
-            FrameworkRectangle rectangle, FrameworkRectangle borderRectangle, int currentLineNumber) {
-        validateLineNumber(currentLineNumber);
-//        drawForTest(rectangle);
-        List<Divider> changedDividers = new ArrayList<>();
-        this.dividers.forEach(
-                existingDivider -> {
-                    FrameworkRectangle existingRectangle = existingDivider.getRectangle();
-//                    drawForTest(existingRectangle);
-                    float intersection = rectangle.intersectsHorizontally(existingRectangle);
-//                    if (existingDivider.getNumberOfFirstLine() == currentLineNumber) {
-//                        List<Rectangle> resultRectangles = existingRectangle.cut(rectangle, THRESHOLD);
-//                        if (!resultRectangles.isEmpty()) {
-//                            resultRectangles.forEach(
-//                                    resultRectangle -> {
-//                                        Divider newDivider = existingDivider.copy();
-//                                        newDivider.setRectangle(resultRectangle);
-//                                        this.dividers.add(newDivider);
-//                                    });
-//                            this.dividers.sort(Comparator.comparingDouble(d -> d.getRectangle().getMinX()));
-//                        }
-//                    }
-                    if ((existingDivider.getNumberOfLastLine() == currentLineNumber - 1)
-                            && (intersection >= (0.75 * rectangle.getWidth())
-                            || intersection >= (0.75 * existingRectangle.getWidth()))) {
-                        FrameworkRectangle intersectionRectangle =
-                                getIntersectionRectangle(existingRectangle, rectangle);
-                        existingDivider.setRectangle(intersectionRectangle);
-                        existingDivider.setBorderRectangle(
-                                combineTwoRectangles(
-                                        borderRectangle, existingDivider.getBorderRectangle()));
-                        existingDivider.setNumberOfLastLine(currentLineNumber);
-                        changedDividers.add(existingDivider);
-                    }
-                });
-        return !changedDividers.isEmpty();
-    }
-
-    /**
-     * Create divider (rectangle which represents empty space between objects)
-     *
-     * @param rectangle - dividers rectangle
-     * @param borderRectangle - dividers possible content border rectangle
-     */
-    private void createDivider(
-            FrameworkRectangle rectangle, FrameworkRectangle borderRectangle, int currentLineNumber) {
-        validateLineNumber(currentLineNumber);
-        Divider divider = new Divider();
-        divider.setRectangle(rectangle);
-        if (Math.abs(rectangle.getMaxX() - this.page.getCropBox().getUpperRightX()) <= THRESHOLD
-                || Math.abs(rectangle.getMinX() - 0) <= THRESHOLD) divider.setPageBorder(true);
-        divider.setBorderRectangle(borderRectangle);
-        divider.setNumberOfFirstLine(currentLineNumber);
-        divider.setNumberOfLastLine(currentLineNumber);
-        this.dividers.add(divider);
-        this.dividersByX.put(borderRectangle.getMinX(), divider);
-        // drawForTest(divider.getRectangle());
-    }
-
     /**
      * Create pdf object (text, link)
      *
@@ -514,8 +414,6 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
 
             if (textPosition.getFont().getName().toLowerCase().contains("italic"))
                 character.setItalicText(true);
-        } else {
-            //System.out.println(textPosition.getUnicode());
         }
 
         if (this.rectangles.stream().anyMatch(r -> r.underlines(textPosition)))
@@ -623,14 +521,6 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
                     / 500.0) return false;
             return Math.abs(p2.getY() - p0.getY()) < 2;
         }
-    }
-
-    private void validateLineNumber(int lineNumber) {
-        if (lineNumber < 0)
-            throw new IllegalArgumentException("line number" + lineNumber + " is less than zero");
-        if (lineNumber >= this.pageLines.size())
-            throw new IllegalArgumentException(
-                    "line number" + lineNumber + " is more or equal than number of lines");
     }
 
     private void drawForTest(FrameworkRectangle rectangle) {

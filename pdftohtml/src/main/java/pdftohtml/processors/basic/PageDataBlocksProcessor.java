@@ -191,9 +191,9 @@ public class PageDataBlocksProcessor {
       for (int y = 0; y < image.getHeight(); y++) {
         int pixel = image.getRGB(x, y);
         if (x == 0 && y == 0) {
-          color = (pixel >> 24);
+          color = pixel;
         }
-        if ((pixel >> 24) != color) {
+        if (pixel != color) {
           return false;
         }
       }
@@ -253,7 +253,6 @@ public class PageDataBlocksProcessor {
   }
 
   private void processSkeletons() {
-    cutCrossingDividers();
     filterOneLineDividers();
     createDividersBorderRectangles();
     createSkeletons();
@@ -448,11 +447,6 @@ public class PageDataBlocksProcessor {
                         currentDivider.getBorderRectangle(), nextDivider.getRectangle()));
       }
     }
-  }
-
-  /** | --> | | | | <-- | */
-  private void cutCrossingDividers() {
-    // TODO
   }
 
   private FrameworkRectangle createLeftBorderRectangle(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {

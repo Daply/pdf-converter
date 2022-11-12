@@ -1,6 +1,5 @@
 package pdftohtml.processors.basic.objects.dividers;
 
-import lombok.NoArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import pdftohtml.common.Globals;
@@ -8,14 +7,13 @@ import pdftohtml.domain.framework.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.process.container.Block;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static pdftohtml.helpers.RectangleHelper.checkXSpaceBetweenTwoRectangles;
-import static pdftohtml.helpers.RectangleHelper.createRectangleBetweenTwoRectangles;
+import static pdftohtml.helpers.RectangleHelper.*;
 import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
 
 /**
@@ -28,42 +26,39 @@ public class PageObjectsDividersProcessor {
      * Main document for processing
      */
     private PDDocument document;
+    private PDPage page;
 
-    private boolean testMode = true;
+    private boolean testSortedMode = false;
+    private boolean testDividersMode = true;
+
+    private List<FrameworkRectangle> dividers;
 
     public PageObjectsDividersProcessor(PDDocument document) {
         this.document = document;
+        this.dividers = new ArrayList<>();
     }
 
     public void findDividersOnPage(int pageIndex, List<Block> blocks) {
+        this.page = this.document.getPage(pageIndex - 1);
 
         // TODO list_test
 
 
-        // TODO sort all blocks by x that do not cross by y
+        // 1. sort all blocks by x that do not cross by y
         List<Block> sorted = sortBlocks(
                 blocks.stream().filter(block ->
                         doesBlockCrossByYWithAnyInList(block, blocks)
                 )
         ).collect(Collectors.toList());
 
+        drawSortedBlocksRectangles(pageIndex, blocks);
 
-//        int counter = 0;
-//        for (Block b: sorted) {
-//            drawForTest(
-//                    pageIndex,
-//                    b,
-//                    null,
-//                    b.getContentRectangle(),
-//                    String.valueOf(counter)
-//            );
-//            counter++;
-//        }
+        // 2. find dividers between all blocks that cross by y coordinate
+        findDividers(sorted);
 
-        // TODO find dividers between all blocks that cross by y
-        getDividers(pageIndex, sorted);
-
-        // TODO cut and merge dividers !!! ex. image_in_line
+        // 3. cut and merge dividers !!! ex. image_in_line
+        mergeDividers();
+        drawDividersForTest(pageIndex);
     }
 
     private boolean doesBlockCrossByYWithAnyInList(Block block, List<Block> blocks) {
@@ -83,8 +78,7 @@ public class PageObjectsDividersProcessor {
         );
     }
 
-    private void getDividers(int pageIndex, List<Block> blocks) {
-
+    private void findDividers(List<Block> blocks) {
         blocks.forEach(block -> {
                 for (Block comparingBlock : blocks) {
                     if (block.getContentRectangle()
@@ -104,13 +98,8 @@ public class PageObjectsDividersProcessor {
                                     );
 
                             if (dividerRectangle != null) {
-                                drawForTest(
-                                        pageIndex,
-                                        block,
-                                        comparingBlock,
-                                        dividerRectangle,
-                                        null
-                                );
+                                this.dividers.add(dividerRectangle);
+                                //drawDividersForTest(pageIndex);
                             }
                         }
                         break;
@@ -120,35 +109,64 @@ public class PageObjectsDividersProcessor {
         );
     }
 
-    private void drawForTest(
+    /**
+     * Combine all dividers
+     */
+    private void mergeDividers() {
+        List<FrameworkRectangle> resultDividers = new ArrayList<>(this.dividers);
+        this.dividers.forEach(
+                existingDivider -> {
+                    for (FrameworkRectangle comparingDivider: this.dividers) {
+                        if (!existingDivider.equals(comparingDivider)) {
+                            float intersection = comparingDivider.intersectsHorizontally(existingDivider);
+                            if ((intersection >= (0.75 * existingDivider.getWidth())
+                                    || intersection >= (0.75 * existingDivider.getWidth()))) {
+                               FrameworkRectangle resultDivider =
+                                       uniteTwoRectanglesByXMinimally(existingDivider, comparingDivider);
+                               resultDividers.remove(existingDivider);
+                               resultDividers.remove(comparingDivider);
+                               resultDividers.add(resultDivider);
+                            }
+                        }
+                    }
+
+                }
+        );
+        this.dividers = resultDividers;
+    }
+
+    private void drawSortedBlocksRectangles(
             int pageIndex,
-            Block block,
-            Block comparingBlock,
-            FrameworkRectangle dividerRectangle,
-            String text
+            List<Block> sorted
     ) {
-        if (testMode) {
-//            drawRectangle(
-//                    this.document,
-//                    this.document.getPages().get(pageIndex - 1),
-//                    block.getContentRectangle(),
-//                    Color.MAGENTA,
-//                    null
-//            );
-//            drawRectangle(
-//                    this.document,
-//                    this.document.getPages().get(pageIndex - 1),
-//                    comparingBlock.getContentRectangle(),
-//                    Color.BLUE,
-//                    null
-//            );
-            drawRectangle(
-                    this.document,
-                    this.document.getPages().get(pageIndex - 1),
-                    dividerRectangle,
-                    Color.red,
-                    text
-            );
+        if (testSortedMode) {
+            int counter = 0;
+            for (Block b : sorted) {
+                drawRectangle(
+                        this.document,
+                        this.document.getPages().get(pageIndex - 1),
+                        b.getContentRectangle(),
+                        Color.red,
+                        String.valueOf(counter)
+                );
+                counter++;
+            }
+        }
+    }
+
+    private void drawDividersForTest(
+            int pageIndex
+    ) {
+        if (testDividersMode) {
+            this.dividers.forEach(divider -> {
+                drawRectangle(
+                        this.document,
+                        this.document.getPages().get(pageIndex - 1),
+                        divider,
+                        Color.red,
+                        null
+                );
+            });
         }
     }
 }
