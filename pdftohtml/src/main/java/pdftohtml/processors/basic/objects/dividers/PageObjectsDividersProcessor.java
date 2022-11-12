@@ -9,6 +9,7 @@ import pdftohtml.domain.pdf.object.process.container.Block;
 
 import java.awt.*;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,13 +29,16 @@ public class PageObjectsDividersProcessor {
      */
     private PDDocument document;
 
-    private boolean testMode = false;
+    private boolean testMode = true;
 
     public PageObjectsDividersProcessor(PDDocument document) {
         this.document = document;
     }
 
-    public void findDividers(int pageIndex, List<Block> blocks) {
+    public void findDividersOnPage(int pageIndex, List<Block> blocks) {
+
+        // TODO list_test
+
 
         // TODO sort all blocks by x that do not cross by y
         List<Block> sorted = sortBlocks(
@@ -43,8 +47,23 @@ public class PageObjectsDividersProcessor {
                 )
         ).collect(Collectors.toList());
 
+
+//        int counter = 0;
+//        for (Block b: sorted) {
+//            drawForTest(
+//                    pageIndex,
+//                    b,
+//                    null,
+//                    b.getContentRectangle(),
+//                    String.valueOf(counter)
+//            );
+//            counter++;
+//        }
+
         // TODO find dividers between all blocks that cross by y
         getDividers(pageIndex, sorted);
+
+        // TODO cut and merge dividers !!! ex. image_in_line
     }
 
     private boolean doesBlockCrossByYWithAnyInList(Block block, List<Block> blocks) {
@@ -65,8 +84,14 @@ public class PageObjectsDividersProcessor {
     }
 
     private void getDividers(int pageIndex, List<Block> blocks) {
+
         blocks.forEach(block -> {
-                    blocks.forEach(comparingBlock -> {
+                for (Block comparingBlock : blocks) {
+                    if (block.getContentRectangle()
+                            .isBeforeHorizontallyWithXInaccuracy(
+                                    comparingBlock.getContentRectangle(),
+                                    0
+                            )) {
                         if (checkXSpaceBetweenTwoRectangles(
                                 block.getContentRectangle(),
                                 comparingBlock.getContentRectangle(),
@@ -83,12 +108,15 @@ public class PageObjectsDividersProcessor {
                                         pageIndex,
                                         block,
                                         comparingBlock,
-                                        dividerRectangle
+                                        dividerRectangle,
+                                        null
                                 );
                             }
                         }
-                    });
+                        break;
+                    }
                 }
+            }
         );
     }
 
@@ -96,26 +124,30 @@ public class PageObjectsDividersProcessor {
             int pageIndex,
             Block block,
             Block comparingBlock,
-            FrameworkRectangle dividerRectangle
+            FrameworkRectangle dividerRectangle,
+            String text
     ) {
         if (testMode) {
-            drawRectangle(
-                    this.document,
-                    this.document.getPages().get(pageIndex - 1),
-                    block.getContentRectangle(),
-                    Color.MAGENTA
-            );
-            drawRectangle(
-                    this.document,
-                    this.document.getPages().get(pageIndex - 1),
-                    comparingBlock.getContentRectangle(),
-                    Color.BLUE
-            );
+//            drawRectangle(
+//                    this.document,
+//                    this.document.getPages().get(pageIndex - 1),
+//                    block.getContentRectangle(),
+//                    Color.MAGENTA,
+//                    null
+//            );
+//            drawRectangle(
+//                    this.document,
+//                    this.document.getPages().get(pageIndex - 1),
+//                    comparingBlock.getContentRectangle(),
+//                    Color.BLUE,
+//                    null
+//            );
             drawRectangle(
                     this.document,
                     this.document.getPages().get(pageIndex - 1),
                     dividerRectangle,
-                    Color.red
+                    Color.red,
+                    text
             );
         }
     }

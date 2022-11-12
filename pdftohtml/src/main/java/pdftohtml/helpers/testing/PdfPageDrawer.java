@@ -3,6 +3,7 @@ package pdftohtml.helpers.testing;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import pdftohtml.domain.framework.FrameworkRectangle;
 
 import java.awt.*;
@@ -15,7 +16,8 @@ public class PdfPageDrawer {
             PDDocument document,
             PDPage page,
             FrameworkRectangle rectangle,
-            Color color
+            Color color,
+            String text
     ) {
         String testDocument = "D:\\Dashas stuff\\projects\\pdf-to-html\\pdftohtml\\src\\main\\resources\\page.pdf";
         PDPageContentStream contentStream = null;
@@ -36,6 +38,16 @@ public class PdfPageDrawer {
             //      -----------
             //    x, y
             contentStream.addRect(x, y, (float) rectangle.getWidth(), (float) rectangle.getHeight());
+            if (text != null) {
+                contentStream.beginText();
+                contentStream.newLineAtOffset(
+                        (float) rectangle.getMinX() + 2f,
+                        page.getCropBox().getHeight() - (float) rectangle.getMinY() + 2f
+                );
+                contentStream.setFont(PDType1Font.TIMES_ROMAN, 14);
+                contentStream.showText(text);
+                contentStream.endText();
+            }
             contentStream.stroke();
             contentStream.close();
 

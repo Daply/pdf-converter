@@ -5,82 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1651d066-b5a4-4e26-9d4e-9db2bbf60470" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/pdftohtml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/pdftohtml.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/FileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Globals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Properties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/Stats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/common/DocumentMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/common/DocumentMetadata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/FrameworkRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/FrameworkRectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/Point2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/Point2D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/htmltags/HtmlTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/htmltags/HtmlTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/MiddlewareObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/MiddlewareObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/MiddlewareObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/MiddlewareObjectType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/TextParagraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/TextParagraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/list/ItemsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/list/ItemsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/list/ItemsListRowContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/list/ItemsListRowContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/TableCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/TableCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/TableRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/middleware/table/TableRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/GraphicsObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/GraphicsObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/LinkObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/LinkObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/PdfDocumentObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/PdfDocumentObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/PdfDocumentObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/PdfDocumentObjectType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/SkeletonType.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/SkeletonType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextObjectType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextPositionStyleWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/TextPositionStyleWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/complex/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/complex/Skeleton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/PageLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/PageLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/SortRectangleTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/SortRectangleTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/template/Divider.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/template/Divider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/TextObjectTypeResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/TextObjectTypeResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/LineObjectsPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/LineObjectsPrinter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/PdfPageDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/PdfPageDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/page.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/page.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/FreeSpaceFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/FreeSpaceFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/MainProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/MainProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/SkeletonsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/SkeletonsProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/graphics/GraphicsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/graphics/GraphicsProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/paths/StrokePathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/paths/StrokePathFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/paths/StrokePathRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/paths/StrokePathRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/LinkObjectCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/LinkObjectCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/PdfTextObjectCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/PdfTextObjectCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/TextObjectCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/TextObjectCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/TextObjectsCreationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/text/TextObjectsCreationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/HtmlProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/HtmlProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/HtmlTagProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/HtmlTagProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/ItemsListProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/ItemsListProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/ParagraphProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/html/ParagraphProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/ItemsListCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/ItemsListCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/LinesMiddlewareObjectsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/LinesMiddlewareObjectsProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/MiddlewareObjectCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/MiddlewareObjectCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/TableCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/middleware/TableCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/image_in_line.docx" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/image_in_line.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/image_in_line.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/image_in_line.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/~$table.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/TestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/framework/FrameworkRectangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/framework/FrameworkRectangleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/BlockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/BlockTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/PageLineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/PageLineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/target/classes/page.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/target/classes/page.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,43 +100,28 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="60" />
+          <line>43</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="62" />
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="63" />
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="64" />
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java</url>
-          <line>151</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java</url>
-          <line>165</line>
-          <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java</url>
-          <line>471</line>
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java</url>
-          <line>434</line>
-          <option name="timeStamp" value="84" />
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

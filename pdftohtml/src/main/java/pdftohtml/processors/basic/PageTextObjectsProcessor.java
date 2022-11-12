@@ -1,6 +1,7 @@
 package pdftohtml.processors.basic;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.pdfbox.contentstream.operator.Operator;
 import org.apache.pdfbox.contentstream.operator.OperatorProcessor;
@@ -16,6 +17,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.TextPosition;
 import org.apache.pdfbox.util.Matrix;
 import pdftohtml.common.Properties;
+import pdftohtml.domain.common.DocumentMetadata;
 import pdftohtml.domain.framework.Point2D;
 import pdftohtml.domain.framework.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.process.*;
@@ -50,6 +52,9 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
     private boolean testMode = false;
 
     private PDPage page;
+    @Getter
+    @Setter
+    private int pageIndex;
 
     private Block currentLinesBlock;
     @Getter
@@ -120,6 +125,7 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
 
     @Override
     public String getText(PDDocument doc) throws IOException {
+        init();
         String text = super.getText(doc);
         processBlock();
         return text;
@@ -148,9 +154,6 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
      * @param textPositions - list of text positions (characters with metadata)
      */
     private void gatherTextObjectsToLine(List<TextPosition> textPositions) {
-        if (this.pageLines.size() == 1) {
-            System.out.println();
-        }
         StringBuilder lineText = new StringBuilder();
         List<PdfDocumentObject> lineObjects = new ArrayList<>();
 
@@ -247,7 +250,16 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
     }
 
     private void processBlock() {
-        this.currentLinesBlock.setLines(this.pageLines);
+        if (!this.pageLines.isEmpty()) {
+            this.currentLinesBlock.setLines(this.pageLines);
+            this.currentLinesBlock.setDocumentMetadata(
+                    new DocumentMetadata(
+                            "",
+                            this.pageIndex
+                    )
+            );
+        }
+
         if (!this.existingBlocks.contains(this.currentLinesBlock)) {
             this.blocks.add(currentLinesBlock.copy());
             this.existingBlocks.add(currentLinesBlock);
@@ -442,7 +454,6 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
             ) {
                 ((TextObject) currentObject).addToTextContent(textPosition.getUnicode());
                 currentObject.addToRectangle(currentRectangle);
-                //} else if (!currentObject.getObjectType().equals(PdfDocumentObjectType.LINK)) {
             } else {
                 lineObjects.add(currentObject);
                 currentObject = this.textObjectsCreationFactory.create(textPosition, wrapper, null);
@@ -628,7 +639,8 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
                     this.document,
                     this.page,
                     rectangle,
-                    Color.BLUE
+                    Color.BLUE,
+                    null
             );
         }
     }

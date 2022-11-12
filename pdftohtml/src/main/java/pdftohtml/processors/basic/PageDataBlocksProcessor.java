@@ -3,6 +3,7 @@ package pdftohtml.processors.basic;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import pdftohtml.common.Properties;
+import pdftohtml.domain.common.DocumentMetadata;
 import pdftohtml.domain.framework.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.process.*;
 import pdftohtml.domain.pdf.object.process.complex.Skeleton;
@@ -15,13 +16,13 @@ import pdftohtml.processors.basic.objects.dividers.PageObjectsDividersProcessor;
 import pdftohtml.processors.basic.objects.graphics.GraphicsProcessor;
 import pdftohtml.processors.basic.objects.paths.StrokePathRenderer;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static pdftohtml.helpers.RectangleHelper.combineRectangles;
@@ -53,15 +54,16 @@ public class PageDataBlocksProcessor {
   private List<Divider> dividers;
   private List<Skeleton> skeletons;
   private List<Block> blocks;
+  private List<Block> currentPageBlocks;
 
   /**
    * Test mode flags
    */
   private boolean linesTestMode = false;
-  private boolean blocksTestMode = true;
+  private boolean blocksTestMode = false;
   private boolean graphicsTestMode = false;
   private boolean strokePathsTestMode = false;
-  private boolean dividersTestMode = false;
+  private boolean dividersTestMode = true;
   private boolean skeletonsTestMode = false;
 
   public PageDataBlocksProcessor(PDDocument document) {
@@ -69,6 +71,7 @@ public class PageDataBlocksProcessor {
     this.dividers = new ArrayList<>();
     this.skeletons = new ArrayList<>();
     this.blocks = new ArrayList<>();
+    this.currentPageBlocks = new ArrayList<>();
     this.document = document;
     try {
       this.pageTextObjectsProcessor = new PageTextObjectsProcessor();
@@ -81,18 +84,19 @@ public class PageDataBlocksProcessor {
   }
 
   public void processPage(int pageIndex) {
+    this.currentPageBlocks = new ArrayList<>();
+
     PDPage page = this.document.getPage(pageIndex - 1);
     processPageText(pageIndex, page);
 
     // get text data blocks
-    this.blocks = pageTextObjectsProcessor.getBlocks();
+    this.currentPageBlocks.addAll(pageTextObjectsProcessor.getBlocks());
 
     // extract all page graphics
     processPageGraphics(pageIndex, page);
 
-    // TODO process blocks inside other blocks
-
-    pageObjectsDividersProcessor.findDividers(pageIndex, this.blocks);
+    this.blocks.addAll(this.currentPageBlocks);
+    pageObjectsDividersProcessor.findDividersOnPage(pageIndex, this.currentPageBlocks);
 
     // get all page data dividers
     // TODO
@@ -114,6 +118,7 @@ public class PageDataBlocksProcessor {
     pageTextObjectsProcessor.setEndPage(pageIndex);
     try {
       pageTextObjectsProcessor.setPage(page);
+      pageTextObjectsProcessor.setPageIndex(pageIndex);
       pageTextObjectsProcessor.processPage(page);
       pageTextObjectsProcessor.getText(document);
     } catch (IOException e) {
@@ -123,12 +128,13 @@ public class PageDataBlocksProcessor {
 
   private void processPageGraphics(int pageIndex, PDPage page) {
     try {
+      graphicsProcessor.setPageIndex(pageIndex);
       graphicsProcessor.processPage(page);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    List<GraphicsObject> graphics =  graphicsProcessor.getGraphicsObjects();
-    blocks.addAll(gatherGraphicsToBlocksAndLines(graphics));
+    List<GraphicsObject> graphics = graphicsProcessor.getGraphicsObjects();
+    currentPageBlocks.addAll(gatherGraphicsToBlocksAndLines(graphics, pageIndex));
 
     if (this.graphicsTestMode) {
       for (GraphicsObject graphicsObject : graphics) {
@@ -136,10 +142,63 @@ public class PageDataBlocksProcessor {
                 this.document,
                 this.document.getPages().get(pageIndex - 1),
                 graphicsObject.getRectangle(),
-                Color.green
+                Color.green,
+                null
         );
       }
     }
+  }
+
+  /**
+   * @param graphics
+   */
+  private List<Block> gatherGraphicsToBlocksAndLines(
+          List<GraphicsObject> graphics,
+          int pageIndex
+  ) {
+    return graphics.stream().map(graphicsObject -> {
+      if (!isTransparentOrMonotoneColor(graphicsObject.getImage())) {
+
+        File outputfile =
+                new File("D:\\Dashas stuff\\projects\\pdf-to-html\\pdftohtml\\src\\main\\resources\\image.jpg");
+        try {
+          ImageIO.write(graphicsObject.getImage(), "jpg", outputfile);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
+        Block imageBlock = new Block();
+        PageLine pageLine = new PageLine();
+        pageLine.addObject(graphicsObject);
+        imageBlock.addLine(pageLine);
+        imageBlock.setDocumentMetadata(
+                new DocumentMetadata(
+                        document.getDocumentInformation()
+                                .getTitle(),
+                        pageIndex
+                )
+        );
+        return imageBlock;
+      } else {
+        return null;
+      }
+    }).filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  private boolean isTransparentOrMonotoneColor(BufferedImage image) {
+    int color = 0;
+    for (int x = 0; x < image.getWidth(); x++) {
+      for (int y = 0; y < image.getHeight(); y++) {
+        int pixel = image.getRGB(x, y);
+        if (x == 0 && y == 0) {
+          color = (pixel >> 24);
+        }
+        if ((pixel >> 24) != color) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   private void processPageStrokePaths(int pageIndex) {
@@ -154,23 +213,11 @@ public class PageDataBlocksProcessor {
                 this.document,
                 this.document.getPages().get(pageIndex - 1),
                 path,
-                Color.BLUE
+                Color.BLUE,
+                null
         );
       });
     }
-  }
-
-  /**
-   * @param graphics
-   */
-  private List<Block> gatherGraphicsToBlocksAndLines(List<GraphicsObject> graphics) {
-    return graphics.stream().map(graphicsObject -> {
-      Block imageBlock = new Block();
-      PageLine pageLine = new PageLine();
-      pageLine.addObject(graphicsObject);
-      imageBlock.addLine(pageLine);
-      return imageBlock;
-    }).collect(Collectors.toList());
   }
 
   /**
@@ -444,7 +491,8 @@ public class PageDataBlocksProcessor {
                 this.document,
                 this.document.getPages().get(pageIndex - 1),
                 line.getRectangle(),
-                Color.BLACK
+                Color.BLACK,
+                null
         );
       }
     }
@@ -456,14 +504,16 @@ public class PageDataBlocksProcessor {
                   this.document,
                   this.document.getPages().get(pageIndex - 1),
                   block.getContentRectangle(),
-                  Color.CYAN
+                  Color.CYAN,
+                  null
           );
         } else {
           PdfPageDrawer.drawRectangle(
                   this.document,
                   this.document.getPages().get(pageIndex - 1),
                   block.getContentRectangle(),
-                  Color.MAGENTA
+                  Color.MAGENTA,
+                  null
           );
         }
       }
@@ -475,7 +525,8 @@ public class PageDataBlocksProcessor {
                 this.document,
                 this.document.getPages().get(pageIndex - 1),
                 div.getRectangle(),
-                Color.RED
+                Color.RED,
+                null
         );
       }
     }

@@ -1,6 +1,7 @@
 package pdftohtml.processors.basic.objects.graphics;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.pdfbox.contentstream.PDFStreamEngine;
 import org.apache.pdfbox.contentstream.operator.DrawObject;
 import org.apache.pdfbox.contentstream.operator.Operator;
@@ -27,10 +28,11 @@ import java.util.List;
 @Getter
 public class GraphicsProcessor extends PDFStreamEngine {
 
+  @Setter
+  private int pageIndex;
+
   private double pageWidth = 0;
   private double pageHeight = 0;
-
-  private RectangleHelper rectangleHelper = new RectangleHelper();
 
   private List<GraphicsObject> graphicsObjects = new ArrayList<>();
 

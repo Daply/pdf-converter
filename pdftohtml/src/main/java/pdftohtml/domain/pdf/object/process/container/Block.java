@@ -2,6 +2,7 @@ package pdftohtml.domain.pdf.object.process.container;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import pdftohtml.domain.common.DocumentMetadata;
 import pdftohtml.domain.framework.FrameworkRectangle;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class Block {
 
