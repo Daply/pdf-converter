@@ -355,6 +355,21 @@ public class FrameworkRectangle {
 
   /**
    * Checks if the this rectangle {@link FrameworkRectangle} stands
+   * after the specified rectangular area by x coordinate
+   *
+   * @param rectangle specified rectangular area
+   * @return true, if this rectangle stands after
+   *         the specified rectangular area by x coordinate
+   *         false otherwise
+   */
+  public boolean isAfterHorizontallyWithXInaccuracy(FrameworkRectangle rectangle, double xInaccuracy) {
+    if (rectangle == null) return false;
+    return this.getMaxX() > rectangle.getMaxX() &&
+            this.getMinX() >= rectangle.getMaxX() + xInaccuracy;
+  }
+
+  /**
+   * Checks if the this rectangle {@link FrameworkRectangle} stands
    * before the specified rectangular area by y coordinate
    *
    * @param rectangle specified rectangular area

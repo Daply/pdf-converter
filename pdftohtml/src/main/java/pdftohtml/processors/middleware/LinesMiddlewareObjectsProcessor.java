@@ -1,7 +1,7 @@
 package pdftohtml.processors.middleware;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdf.object.middleware.TextParagraph;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.TextParagraph;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
 import pdftohtml.domain.pdf.object.process.SkeletonType;

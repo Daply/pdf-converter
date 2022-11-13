@@ -1,7 +1,7 @@
-package pdftohtml.domain.pdf.object.middleware.list;
+package pdftohtml.domain.pdf.object.mediate.list;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObjectType;
 
 import java.util.ArrayList;
 import java.util.List;

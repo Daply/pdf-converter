@@ -1,14 +1,16 @@
-package pdftohtml.domain.pdf.object.middleware.list;
+package pdftohtml.domain.pdf.object.mediate.table;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ItemsListRowContent {
+public class TableCell {
 
     private List<MiddlewareObject> objects;
 
-    public ItemsListRowContent() {
+    public TableCell() {
+        this.objects = new ArrayList<>();
     }
 
     public List<MiddlewareObject> getObjects() {
@@ -22,5 +24,4 @@ public class ItemsListRowContent {
     public void setObjects(List<MiddlewareObject> objects) {
         this.objects = objects;
     }
-
 }

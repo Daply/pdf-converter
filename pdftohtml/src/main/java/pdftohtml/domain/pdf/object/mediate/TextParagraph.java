@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdf.object.middleware;
+package pdftohtml.domain.pdf.object.mediate;
 
 import pdftohtml.domain.pdf.object.process.TextObject;
 

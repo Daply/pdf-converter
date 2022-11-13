@@ -166,7 +166,7 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
 
             // if currentObject is not null then the current textPosition
             // is not first in the text line
-            if (!isNull(currentObject)) {
+            if (Objects.nonNull(currentObject)) {
                 previousObjectRectangle = currentObject.getRectangle();
             }
             currentObjectRectangle = createTextPositionRectangle(textPosition);
@@ -265,7 +265,7 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
             this.existingBlocks.add(currentLinesBlock);
         }
 
-        this.blocksByX.put(currentLinesBlock.getBorderRectangle().getMinX(), currentLinesBlock);
+        this.blocksByX.put(currentLinesBlock.getContentRectangle().getMinX(), currentLinesBlock);
         this.currentLinesBlock = new Block();
         this.pageLines = new ArrayList<>();
     }
@@ -533,9 +533,5 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
                     null
             );
         }
-    }
-
-    private boolean isNull(PdfDocumentObject object) {
-        return object == null;
     }
 }

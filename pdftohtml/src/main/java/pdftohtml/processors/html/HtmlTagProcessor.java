@@ -1,6 +1,6 @@
 package pdftohtml.processors.html;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
 
 public abstract class HtmlTagProcessor {
 

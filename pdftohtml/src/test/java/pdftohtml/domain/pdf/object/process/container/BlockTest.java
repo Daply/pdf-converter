@@ -21,7 +21,7 @@ class BlockTest {
         newLine.setRectangle(new FrameworkRectangle(0, 21, 10, 5));
         block.addLine(newLine);
 
-        assertEquals(new FrameworkRectangle(0, 0, 10, 26), block.getBorderRectangle());
+        assertEquals(new FrameworkRectangle(0, 0, 10, 26), block.getContentRectangle());
         assertEquals(4, block.getLines().size());
         assertEquals(newLine.getRectangle(), block.getLines().get(3).getRectangle());
     }
@@ -36,7 +36,7 @@ class BlockTest {
         newLine.setRectangle(new FrameworkRectangle(0, 6, 10, 1));
         block.addLine(newLine);
 
-        assertEquals(new FrameworkRectangle(0, 0, 10, 19), block.getBorderRectangle());
+        assertEquals(new FrameworkRectangle(0, 0, 10, 19), block.getContentRectangle());
         assertEquals(4, block.getLines().size());
         assertEquals(newLine.getRectangle(), block.getLines().get(1).getRectangle());
     }
@@ -45,7 +45,7 @@ class BlockTest {
     void whenSetLinesThenBlockLinesSetAndBlockRectangleInstantiated() {
         Block block = new Block();
         block.setLines(createPageLinesList());
-        assertEquals(new FrameworkRectangle(0, 0, 10, 19), block.getBorderRectangle());
+        assertEquals(new FrameworkRectangle(0, 0, 10, 19), block.getContentRectangle());
     }
 
     private List<PageLine> createPageLinesList() {

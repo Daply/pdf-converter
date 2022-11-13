@@ -1,8 +1,8 @@
 package pdftohtml.processors.middleware;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdf.object.middleware.list.ItemsList;
-import pdftohtml.domain.pdf.object.middleware.list.ItemsListRowContent;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.list.ItemsList;
+import pdftohtml.domain.pdf.object.mediate.list.ItemsListRowContent;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
 import pdftohtml.domain.pdf.object.process.SkeletonType;

@@ -1,6 +1,6 @@
 package pdftohtml.processors;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
 import pdftohtml.domain.pdf.object.process.SkeletonType;
 import pdftohtml.domain.pdf.object.process.complex.Skeleton;
 import pdftohtml.processors.middleware.LinesMiddlewareObjectsProcessor;

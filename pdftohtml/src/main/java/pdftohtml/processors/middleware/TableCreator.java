@@ -1,9 +1,9 @@
 package pdftohtml.processors.middleware;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
-import pdftohtml.domain.pdf.object.middleware.table.Table;
-import pdftohtml.domain.pdf.object.middleware.table.TableCell;
-import pdftohtml.domain.pdf.object.middleware.table.TableRow;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.table.Table;
+import pdftohtml.domain.pdf.object.mediate.table.TableCell;
+import pdftohtml.domain.pdf.object.mediate.table.TableRow;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
 import pdftohtml.domain.pdf.object.process.SkeletonType;

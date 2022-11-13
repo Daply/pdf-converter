@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdf.object.middleware;
+package pdftohtml.domain.pdf.object.mediate;
 
 public class MiddlewareObject {
 

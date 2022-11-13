@@ -63,7 +63,7 @@ public class PageDataBlocksProcessor {
   private boolean blocksTestMode = false;
   private boolean graphicsTestMode = false;
   private boolean strokePathsTestMode = false;
-  private boolean dividersTestMode = true;
+  private boolean dividersTestMode = false;
   private boolean skeletonsTestMode = false;
 
   public PageDataBlocksProcessor(PDDocument document) {

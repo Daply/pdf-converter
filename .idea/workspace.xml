@@ -7,12 +7,15 @@
     <list default="true" id="1651d066-b5a4-4e26-9d4e-9db2bbf60470" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/FileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/FrameworkRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/framework/FrameworkRectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/container/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/template/Divider.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/process/template/Divider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageTextObjectsProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/image.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/BlockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/test/java/pdftohtml/domain/pdf/object/process/container/BlockTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,13 +101,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="105" />
+          <line>184</line>
+          <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="106" />
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/objects/dividers/PageObjectsDividersProcessor.java</url>
+          <line>192</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/basic/PageDataBlocksProcessor.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="115" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

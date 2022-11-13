@@ -18,15 +18,12 @@ public class Block {
 
     private List<PageLine> lines;
 
-    private FrameworkRectangle borderRectangle;
-
     private FrameworkRectangle contentRectangle;
 
     private DocumentMetadata documentMetadata;
 
     public Block() {
         this.lines = new ArrayList<>();
-        this.borderRectangle = new FrameworkRectangle();
         this.contentRectangle = new FrameworkRectangle();
     }
 
@@ -67,29 +64,28 @@ public class Block {
                 lines.stream()
                         .min(Comparator.comparingDouble(line -> line.getRectangle().getMinX()))
                         .map(line -> line.getRectangle().getMinX())
-                        .orElse(this.borderRectangle.getMinX());
+                        .orElse(0.0);
         double maxX =
                 lines.stream()
                         .max(Comparator.comparingDouble(line -> line.getRectangle().getMaxX()))
                         .map(line -> line.getRectangle().getMaxX())
-                        .orElse(this.borderRectangle.getMaxX());
+                        .orElse(0.0);
         double minY =
                 lines.stream()
                         .min(Comparator.comparingDouble(line -> line.getRectangle().getMinY()))
                         .map(line -> line.getRectangle().getMinY())
-                        .orElse(this.borderRectangle.getMinY());
+                        .orElse(0.0);
         double maxY =
                 lines.stream()
                         .max(Comparator.comparingDouble(line -> line.getRectangle().getMaxY()))
                         .map(line -> line.getRectangle().getMaxY())
-                        .orElse(this.getBorderRectangle().getMaxY());
+                        .orElse(0.0);
         this.contentRectangle.setRectangleCoordinates(minX, minY, maxX, maxY);
     }
 
     public Block copy() {
         return new Block(
                 this.getLines(),
-                this.getBorderRectangle(),
                 this.getContentRectangle(),
                 this.getDocumentMetadata()
         );
@@ -101,7 +97,6 @@ public class Block {
         if (o == null || getClass() != o.getClass()) return false;
         Block block = (Block) o;
         return lines.equals(block.lines) &&
-                borderRectangle.equals(block.borderRectangle) &&
                 contentRectangle.equals(block.contentRectangle);
     }
 
@@ -109,7 +104,6 @@ public class Block {
     public int hashCode() {
         int linesHashcode = this.lines.stream().mapToInt(PageLine::hashCode).sum();
         return linesHashcode +
-                borderRectangle.hashCode() +
                 contentRectangle.hashCode();
     }
 }

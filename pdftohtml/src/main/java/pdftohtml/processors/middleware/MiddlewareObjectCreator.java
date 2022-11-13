@@ -1,6 +1,6 @@
 package pdftohtml.processors.middleware;
 
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
 import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
 
 public abstract class MiddlewareObjectCreator {

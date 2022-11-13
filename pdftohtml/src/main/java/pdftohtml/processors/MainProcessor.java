@@ -1,7 +1,7 @@
 package pdftohtml.processors;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import pdftohtml.domain.pdf.object.middleware.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
 import pdftohtml.processors.basic.PageDataBlocksProcessor;
 import pdftohtml.processors.html.HtmlProcessor;
 

@@ -17,8 +17,11 @@ import static pdftohtml.helpers.RectangleHelper.*;
 import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
 
 /**
- * Class for identifying empty spaces between text,
+ * Class for identifying empty spaces
+ * between blocks of page data,
  * for example in table it can be table border
+ *
+ * @author Daria Pleshchankova
  */
 public class PageObjectsDividersProcessor {
 
@@ -39,6 +42,7 @@ public class PageObjectsDividersProcessor {
     }
 
     public void findDividersOnPage(int pageIndex, List<Block> blocks) {
+        this.dividers = new ArrayList<>();
         this.page = this.document.getPage(pageIndex - 1);
 
         // TODO list_test
@@ -51,13 +55,15 @@ public class PageObjectsDividersProcessor {
                 )
         ).collect(Collectors.toList());
 
-        drawSortedBlocksRectangles(pageIndex, blocks);
+        drawSortedBlocksRectangles(pageIndex, sorted);
 
-        // 2. find dividers between all blocks that cross by y coordinate
+        // 2. find dividers between all blocks that cross by y coordinate,
+        // blocks should be sorted by x
         findDividers(sorted);
 
         // 3. cut and merge dividers !!! ex. image_in_line
         mergeDividers();
+        cutDividers(blocks);
         drawDividersForTest(pageIndex);
     }
 
@@ -78,14 +84,29 @@ public class PageObjectsDividersProcessor {
         );
     }
 
-    private void findDividers(List<Block> blocks) {
-        blocks.forEach(block -> {
-                for (Block comparingBlock : blocks) {
+    /**
+     * Find all dividers between blocks of page data,
+     * from the very start of the page till the blocks and
+     * after the blocks content
+     *
+     * Example: (|  | - divider)
+     * |  | text text text |  |
+     * |  | text |  | text |  |
+     * |            | text |  |
+     * |  | text text text |  |
+     *
+     * @param sortedBlocksByX - block of page data sorted by x coordinate
+     */
+    private void findDividers(List<Block> sortedBlocksByX) {
+        sortedBlocksByX.forEach(block -> {
+                boolean hasBlocksOnTheLeft = false;
+                boolean hasBlocksOnTheRight = false;
+                for (Block comparingBlock : sortedBlocksByX) {
                     if (block.getContentRectangle()
-                            .isBeforeHorizontallyWithXInaccuracy(
-                                    comparingBlock.getContentRectangle(),
-                                    0
-                            )) {
+                            .isBeforeHorizontallyWithXInaccuracy(comparingBlock.getContentRectangle(), 0) &&
+                            block.getContentRectangle().intersectsVertically(comparingBlock.getContentRectangle()) > 0 &&
+                            !hasBlocksOnTheRight
+                    ) {
                         if (checkXSpaceBetweenTwoRectangles(
                                 block.getContentRectangle(),
                                 comparingBlock.getContentRectangle(),
@@ -99,11 +120,38 @@ public class PageObjectsDividersProcessor {
 
                             if (dividerRectangle != null) {
                                 this.dividers.add(dividerRectangle);
-                                //drawDividersForTest(pageIndex);
                             }
                         }
-                        break;
+                        hasBlocksOnTheRight = true;
                     }
+                    if (block.getContentRectangle()
+                            .isAfterHorizontallyWithXInaccuracy(comparingBlock.getContentRectangle(), 0) &&
+                            block.getContentRectangle().intersectsVertically(comparingBlock.getContentRectangle()) > 0 &&
+                            !hasBlocksOnTheLeft) {
+                        hasBlocksOnTheLeft = true;
+                    }
+                }
+                if (!hasBlocksOnTheLeft) {
+                    FrameworkRectangle rectangle = block.getContentRectangle();
+                    FrameworkRectangle leftSidePageRectangle =
+                            new FrameworkRectangle(
+                                    this.page.getCropBox().getLowerLeftX(),
+                                    rectangle.getMinY(),
+                                    rectangle.getMinX() - this.page.getCropBox().getLowerLeftX(),
+                                    rectangle.getHeight()
+                            );
+                    this.dividers.add(leftSidePageRectangle);
+                }
+                if (!hasBlocksOnTheRight) {
+                    FrameworkRectangle rectangle = block.getContentRectangle();
+                    FrameworkRectangle rightSidePageRectangle =
+                            new FrameworkRectangle(
+                                    rectangle.getMaxX(),
+                                    rectangle.getMinY(),
+                                    this.page.getCropBox().getUpperRightX(),
+                                    rectangle.getHeight()
+                            );
+                    this.dividers.add(rightSidePageRectangle);
                 }
             }
         );
@@ -113,26 +161,54 @@ public class PageObjectsDividersProcessor {
      * Combine all dividers
      */
     private void mergeDividers() {
-        List<FrameworkRectangle> resultDividers = new ArrayList<>(this.dividers);
-        this.dividers.forEach(
-                existingDivider -> {
-                    for (FrameworkRectangle comparingDivider: this.dividers) {
-                        if (!existingDivider.equals(comparingDivider)) {
-                            float intersection = comparingDivider.intersectsHorizontally(existingDivider);
-                            if ((intersection >= (0.75 * existingDivider.getWidth())
-                                    || intersection >= (0.75 * existingDivider.getWidth()))) {
-                               FrameworkRectangle resultDivider =
-                                       uniteTwoRectanglesByXMinimally(existingDivider, comparingDivider);
-                               resultDividers.remove(existingDivider);
-                               resultDividers.remove(comparingDivider);
-                               resultDividers.add(resultDivider);
-                            }
-                        }
-                    }
-
+        this.dividers.forEach(divider -> {
+            for (FrameworkRectangle comparingDivider: this.dividers) {
+                float intersection = divider.intersectsHorizontally(comparingDivider);
+                if ((intersection >= (0.55 * divider.getWidth())
+                        || intersection >= (0.55 * comparingDivider.getWidth()))) {
+                    FrameworkRectangle resultDivider =
+                            uniteTwoRectanglesByXMinimally(divider, comparingDivider);
+                    divider.setRectangleCoordinates(
+                            resultDivider.getMinX(),
+                            resultDivider.getMinY(),
+                            resultDivider.getMaxX(),
+                            resultDivider.getMaxY()
+                    );
                 }
-        );
-        this.dividers = resultDividers;
+            }
+        });
+    }
+
+    private void cutDividers(List<Block> blocks) {
+        List<FrameworkRectangle> cutResultDividers = new ArrayList<>();
+        this.dividers.forEach(divider -> {
+            blocks.forEach(block -> {
+                if (divider.intersects(block.getContentRectangle())) {
+
+                    FrameworkRectangle intersectionRectangle =
+                            divider.getIntersection(block.getContentRectangle());
+
+                    if (intersectionRectangle.getWidth() > 0 &&
+                            intersectionRectangle.getHeight() > 0) {
+                        FrameworkRectangle downPartDivider =
+                                new FrameworkRectangle(
+                                        intersectionRectangle.getMinX(),
+                                        intersectionRectangle.getMaxY(),
+                                        intersectionRectangle.getWidth(),
+                                        divider.getMaxY() - intersectionRectangle.getMaxY()
+                                );
+                        divider.setRectangleCoordinates(
+                                divider.getMinX(),
+                                divider.getMinY(),
+                                intersectionRectangle.getMaxX(),
+                                intersectionRectangle.getMinY()
+                        );
+                        cutResultDividers.add(downPartDivider);
+                    }
+                }
+            });
+        });
+        this.dividers.addAll(cutResultDividers);
     }
 
     private void drawSortedBlocksRectangles(
