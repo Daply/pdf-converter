@@ -1,10 +1,10 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObjectType;
-import pdftohtml.domain.pdf.object.mediate.TextParagraph;
-import pdftohtml.domain.pdf.object.process.TextObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
+import pdftohtml.domain.pdf.object.mediate.text.TextParagraph;
+import pdftohtml.domain.pdf.object.basic.TextObject;
 
 import java.util.Stack;
 
@@ -13,11 +13,11 @@ public class ParagraphProcessor extends HtmlTagProcessor {
     private Stack<String> innerTags;
 
     @Override
-    public String process(MiddlewareObject middlewareObject) {
-        validate(middlewareObject);
+    public String process(MediateObject mediateObject) {
+        validate(mediateObject);
 
         this.innerTags = new Stack<>();
-        TextParagraph textParagraph = (TextParagraph) middlewareObject;
+        TextParagraph textParagraph = (TextParagraph) mediateObject;
         StringBuilder content = new StringBuilder();
         content.append(HtmlTag.getParagraphOpen());
         for (TextObject textObject: textParagraph.getTextObjects()) {
@@ -59,8 +59,8 @@ public class ParagraphProcessor extends HtmlTagProcessor {
         return content.toString();
     }
 
-    private void validate(MiddlewareObject middlewareObject) {
-        if (!middlewareObject.getType().equals(MiddlewareObjectType.PARAGRAPH))
+    private void validate(MediateObject mediateObject) {
+        if (!mediateObject.getType().equals(MediateObjectType.PARAGRAPH))
             throw new IllegalArgumentException("object is not of type PARAGRAPH");
     }
 

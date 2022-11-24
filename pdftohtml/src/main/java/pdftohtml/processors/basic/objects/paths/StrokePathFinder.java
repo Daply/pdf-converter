@@ -2,16 +2,12 @@ package pdftohtml.processors.basic.objects.paths;
 
 import lombok.Getter;
 import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.cos.COSStream;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDResources;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImage;
 import org.apache.pdfbox.rendering.PageDrawer;
 import org.apache.pdfbox.rendering.PageDrawerParameters;
-import org.apache.pdfbox.text.TextPosition;
 import org.apache.pdfbox.util.Matrix;
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;

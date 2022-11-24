@@ -1,8 +1,8 @@
-package pdftohtml.domain.pdf.object.process.container;
+package pdftohtml.domain.pdf.object.basic.container;
 
 import org.junit.jupiter.api.Test;
 import pdftohtml.TestUtils;
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import java.util.Arrays;
 import java.util.List;

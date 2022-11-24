@@ -3,10 +3,10 @@ package pdftohtml.helpers;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.text.TextPosition;
 import pdftohtml.common.Properties;
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdf.object.process.TextObject;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.basic.TextObject;
 
 import java.util.List;
 
@@ -76,7 +76,10 @@ public class RectangleHelper {
      *         which is a combination of two
      *         rectangles {@link FrameworkRectangle}
      */
-    public static FrameworkRectangle combineTwoRectangles(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {
+    public static FrameworkRectangle combineTwoRectangles(
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2
+    ) {
         if (rectangle1 == null || rectangle2 == null) return null;
         float xMin = (float) Math.min(rectangle1.getMinX(), rectangle2.getMinX());
         float yMin = (float) Math.min(rectangle1.getMinY(), rectangle2.getMinY());
@@ -97,7 +100,10 @@ public class RectangleHelper {
      * @return new rectangle {@link FrameworkRectangle} object,
      *         which is a subtraction of two rectangles
      */
-    public static FrameworkRectangle subtractRectangle(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {
+    public static FrameworkRectangle subtractRectangle(
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2
+    ) {
         if (rectangle1 == null || rectangle2 == null) return null;
         float xMin = (float) Math.min(rectangle1.getMinX(), rectangle2.getMinX());
         float yMin = (float) Math.min(rectangle1.getMinY(), rectangle2.getMinY());
@@ -140,7 +146,9 @@ public class RectangleHelper {
      * @return true, if space between two rectangles is more or equal than given value
      */
     public static boolean checkXSpaceBetweenTwoRectangles(
-            FrameworkRectangle rectangle1, FrameworkRectangle rectangle2, float space
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2,
+            float space
     ) {
         if (rectangle1 == null || rectangle2 == null) return false;
         if (rectangle1.isBeforeHorizontallyWithXInaccuracy(rectangle2, Properties.xInaccuracy)) {
@@ -160,10 +168,12 @@ public class RectangleHelper {
      * @return true, if space between two rectangles is more or equal than given value
      */
     public static boolean spaceByYBetweenTwoRectanglesIsMore(
-            FrameworkRectangle rectangle1, FrameworkRectangle rectangle2, float space
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2,
+            float space
     ) {
         if (rectangle1 == null || rectangle2 == null) return false;
-        if (rectangle1.isBeforeVerticallyWithYInaccuracy(rectangle2, Properties.xInaccuracy)) {
+        if (rectangle1.isBeforeVerticallyWithYInaccuracy(rectangle2, Properties.yInaccuracy)) {
             return rectangle2.getMinY() - rectangle1.getMaxY() >= space;
         }
         return rectangle1.getMinY() - rectangle2.getMaxY() >= space;
@@ -177,7 +187,10 @@ public class RectangleHelper {
      * @param rectangle2 second rectangle
      * @return true, if first rectangle has almost the same x coordinate start
      */
-    public static boolean haveTheSameStart(FrameworkRectangle rectangle1, FrameworkRectangle rectangle2) {
+    public static boolean haveTheSameStart(
+            FrameworkRectangle rectangle1,
+            FrameworkRectangle rectangle2
+    ) {
         if (rectangle1 == null || rectangle2 == null) return false;
         return Math.abs(rectangle1.getMinX() - rectangle2.getMinX()) <= Properties.xInaccuracy;
     }
@@ -256,7 +269,10 @@ public class RectangleHelper {
      * @param previousObject - given previous object
      * @param textPosition - given textPosition
      */
-    public static FrameworkRectangle createRectangleBetweenObjects(PdfDocumentObject previousObject, TextPosition textPosition) {
+    public static FrameworkRectangle createRectangleBetweenObjects(
+            PdfDocumentObject previousObject,
+            TextPosition textPosition
+    ) {
         float betweenMinX = (float) previousObject.getRectangle().getMaxX();
         if (previousObject.getObjectType().equals(PdfDocumentObjectType.SIMPLE_TEXT) &&
                 ((TextObject)previousObject).getText().isBlank()) {

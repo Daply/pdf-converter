@@ -4,10 +4,10 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotation;
 import org.apache.pdfbox.text.TextPosition;
 import pdftohtml.common.Properties;
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.process.TextObject;
-import pdftohtml.domain.pdf.object.process.TextPositionStyleWrapper;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.basic.TextObject;
+import pdftohtml.domain.pdf.object.basic.TextPositionStyleWrapper;
 
 import java.util.Arrays;
 import java.util.Objects;

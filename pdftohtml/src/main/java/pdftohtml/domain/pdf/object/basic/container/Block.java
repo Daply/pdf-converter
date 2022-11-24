@@ -1,15 +1,14 @@
-package pdftohtml.domain.pdf.object.process.container;
+package pdftohtml.domain.pdf.object.basic.container;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import pdftohtml.domain.common.DocumentMetadata;
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -30,7 +29,7 @@ public class Block {
     /**
      * Adding a line {@link PageLine} to the block
      *
-     * <p>1) If the line rectangle intersects with block
+     * 1) If the line rectangle intersects with block
      * rectangle, it means that this line should be inserted in the middle of
      * block lines list:
      * - checking the place of the line in a block by comparing Y coordinates

@@ -6,7 +6,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.rendering.PageDrawer;
 import org.apache.pdfbox.rendering.PageDrawerParameters;
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
 package pdftohtml.domain.framework;
 
 import org.junit.jupiter.api.Test;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,25 +1,25 @@
 package pdftohtml.domain.pdf.object.mediate.list;
 
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
 
 import java.util.List;
 
 public class ItemsListRowContent {
 
-    private List<MiddlewareObject> objects;
+    private List<MediateObject> objects;
 
     public ItemsListRowContent() {
     }
 
-    public List<MiddlewareObject> getObjects() {
+    public List<MediateObject> getObjects() {
         return objects;
     }
 
-    public void addObject(MiddlewareObject object) {
+    public void addObject(MediateObject object) {
         this.objects.add(object);
     }
 
-    public void setObjects(List<MiddlewareObject> objects) {
+    public void setObjects(List<MediateObject> objects) {
         this.objects = objects;
     }
 

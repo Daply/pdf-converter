@@ -18,13 +18,12 @@ import org.apache.pdfbox.text.TextPosition;
 import org.apache.pdfbox.util.Matrix;
 import pdftohtml.common.Properties;
 import pdftohtml.domain.common.DocumentMetadata;
-import pdftohtml.domain.framework.Point2D;
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.*;
-import pdftohtml.domain.pdf.object.process.container.Block;
-import pdftohtml.domain.pdf.object.process.container.PageLine;
-import pdftohtml.domain.pdf.object.process.template.Divider;
-import pdftohtml.helpers.RectangleHelper;
+import pdftohtml.domain.common.Point2D;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.*;
+import pdftohtml.domain.pdf.object.basic.container.Block;
+import pdftohtml.domain.pdf.object.basic.container.PageLine;
+import pdftohtml.domain.pdf.object.basic.template.Divider;
 import pdftohtml.helpers.testing.PdfPageDrawer;
 import pdftohtml.processors.basic.objects.text.TextObjectsCreationFactory;
 
@@ -37,7 +36,6 @@ import static pdftohtml.common.Globals.*;
 import static pdftohtml.common.Stats.maximumDistanceBetweenLines;
 import static pdftohtml.common.Stats.minimumDistanceBetweenLines;
 import static pdftohtml.helpers.RectangleHelper.*;
-import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
 
 /**
  * Parses pdf document page and gets all text data from it, all simple objects are created as
@@ -273,7 +271,7 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
     private boolean uniteLines(PageLine newLine) {
         for (PageLine line : this.pageLines) {
             if (line.getRectangle()
-                    .onTheSameLineHorizontallyWithYInaccuracy(
+                    .hasSameYCoordinatesWithYInaccuracy(
                             newLine.getRectangle(), Properties.yInaccuracy)) {
                 FrameworkRectangle betweenRectangle =
                         createRectangleBetweenTwoRectangles(

@@ -1,7 +1,7 @@
 package pdftohtml.helpers.testing;
 
-import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.process.container.PageLine;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.basic.container.PageLine;
 
 import java.util.List;
 

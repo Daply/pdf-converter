@@ -17,9 +17,8 @@ import org.apache.pdfbox.pdmodel.graphics.PDXObject;
 import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.util.Matrix;
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.GraphicsObject;
-import pdftohtml.helpers.RectangleHelper;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.GraphicsObject;
 
 import java.io.IOException;
 import java.util.ArrayList;

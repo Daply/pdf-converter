@@ -1,9 +1,9 @@
 package pdftohtml.processors.basic.objects.text;
 
 import org.apache.pdfbox.text.TextPosition;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdf.object.process.TextObject;
-import pdftohtml.domain.pdf.object.process.TextPositionStyleWrapper;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.basic.TextObject;
+import pdftohtml.domain.pdf.object.basic.TextPositionStyleWrapper;
 
 public class TextObjectCreator implements PdfTextObjectCreator {
 

@@ -1,6 +1,6 @@
-package pdftohtml.domain.pdf.object.process;
+package pdftohtml.domain.pdf.object.basic;
 
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
 

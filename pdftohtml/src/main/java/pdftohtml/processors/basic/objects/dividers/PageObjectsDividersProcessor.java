@@ -3,8 +3,8 @@ package pdftohtml.processors.basic.objects.dividers;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import pdftohtml.common.Globals;
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.container.Block;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.container.Block;
 
 import java.awt.*;
 import java.util.ArrayList;

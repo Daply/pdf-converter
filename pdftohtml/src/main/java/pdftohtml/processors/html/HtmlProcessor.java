@@ -1,29 +1,29 @@
 package pdftohtml.processors.html;
 
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
 
 import java.util.List;
 
 public class HtmlProcessor {
 
-    public String process(List<MiddlewareObject> middlewareObjects) {
+    public String process(List<MediateObject> mediateObjects) {
         StringBuilder content = new StringBuilder();
-         for (MiddlewareObject object: middlewareObjects) {
+         for (MediateObject object: mediateObjects) {
              content.append(processObject(object));
          }
          return content.toString();
     }
 
-    private String processObject(MiddlewareObject middlewareObject) {
+    private String processObject(MediateObject mediateObject) {
         HtmlTagProcessor htmlTagProcessor;
-        if (middlewareObject.getType().equals(MiddlewareObjectType.PARAGRAPH)) {
+        if (mediateObject.getType().equals(MediateObjectType.PARAGRAPH)) {
             htmlTagProcessor = new ParagraphProcessor();
-            return htmlTagProcessor.process(middlewareObject);
+            return htmlTagProcessor.process(mediateObject);
         }
-        if (middlewareObject.getType().equals(MiddlewareObjectType.LIST)) {
+        if (mediateObject.getType().equals(MediateObjectType.LIST)) {
             htmlTagProcessor = new ItemsListProcessor();
-            return htmlTagProcessor.process(middlewareObject);
+            return htmlTagProcessor.process(mediateObject);
         }
         return "";
     }

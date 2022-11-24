@@ -1,13 +1,35 @@
-package pdftohtml.domain.pdf.object.mediate;
+package pdftohtml.domain.pdf.object.mediate.text;
 
-import pdftohtml.domain.pdf.object.process.TextObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
+import pdftohtml.domain.pdf.object.basic.TextObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextParagraph extends MiddlewareObject {
+public class TextParagraph extends MediateObject {
 
     private String text;
+
+    private String fontFamily;
+
+    private String fontName;
+
+    private float fontSize;
+
+    private int fontSizePt;
+
+    private float fontWeight;
+
+    private int[] color;
+
+    private boolean underlinedText;
+
+    private boolean strikeThroughText;
+
+    private boolean italicText;
+
+    private boolean boldText;
 
     private float marginLeft;
     private float marginTop;
@@ -19,7 +41,7 @@ public class TextParagraph extends MiddlewareObject {
     public TextParagraph() {
         this.text = "";
         this.textObjects = new ArrayList<>();
-        this.type = MiddlewareObjectType.PARAGRAPH;
+        this.type = MediateObjectType.PARAGRAPH;
     }
 
     public String getText() {

@@ -1,10 +1,10 @@
 package pdftohtml;
 
-import pdftohtml.domain.framework.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.process.PdfDocumentObjectType;
-import pdftohtml.domain.pdf.object.process.TextObject;
-import pdftohtml.domain.pdf.object.process.container.PageLine;
+import pdftohtml.domain.common.FrameworkRectangle;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.basic.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.basic.TextObject;
+import pdftohtml.domain.pdf.object.basic.container.PageLine;
 
 import java.util.List;
 import java.util.stream.Collectors;

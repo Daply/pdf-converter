@@ -1,22 +1,22 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObjectType;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
 import pdftohtml.domain.pdf.object.mediate.list.ItemsList;
 import pdftohtml.domain.pdf.object.mediate.list.ItemsListRowContent;
 
 public class ItemsListProcessor extends HtmlTagProcessor {
 
     @Override
-    public String process(MiddlewareObject middlewareObject) {
-        validate(middlewareObject);
+    public String process(MediateObject mediateObject) {
+        validate(mediateObject);
 
         HtmlProcessor processor = new HtmlProcessor();
         StringBuilder content = new StringBuilder();
-        ItemsList itemsList = (ItemsList) middlewareObject;
+        ItemsList itemsList = (ItemsList) mediateObject;
         content.append(HtmlTag.getOrderedListOpen());
-        for (ItemsListRowContent rowContent: itemsList.getItemslistRowContent()) {
+        for (ItemsListRowContent rowContent: itemsList.getItemsListRowContent()) {
             content.append(HtmlTag.getListElementOpen());
             content.append(processor.process(rowContent.getObjects()));
             content.append(HtmlTag.getListElementClose());
@@ -25,8 +25,8 @@ public class ItemsListProcessor extends HtmlTagProcessor {
         return content.toString();
     }
 
-    private void validate(MiddlewareObject middlewareObject) {
-        if (!middlewareObject.getType().equals(MiddlewareObjectType.LIST))
+    private void validate(MediateObject mediateObject) {
+        if (!mediateObject.getType().equals(MediateObjectType.LIST))
             throw new IllegalArgumentException("object is not of type LIST");
     }
 

@@ -1,4 +1,4 @@
-package pdftohtml.domain.framework;
+package pdftohtml.domain.common;
 
 import lombok.Getter;
 
@@ -6,7 +6,6 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Rectangle class describes bounds (border rectangle) of an object
@@ -376,22 +375,27 @@ public class FrameworkRectangle {
    * @return true, if this rectangle stands before
    *         the specified rectangular area by y coordinate
    */
-  public boolean isBeforeVerticallyWithYInaccuracy(FrameworkRectangle rectangle, double yInaccuracy) {
+  public boolean isBeforeVerticallyWithYInaccuracy(
+          FrameworkRectangle rectangle,
+          double yInaccuracy
+  ) {
     if (rectangle == null) return false;
     return this.getMinY() < rectangle.getMinY() &&
             this.getMaxY() <= rectangle.getMinY() + yInaccuracy;
   }
 
   /**
-   * Checks if the this rectangle {@link FrameworkRectangle} stands
-   * on the same line horizontally with the
-   * specified rectangular area
+   * Checks if the this rectangle {@link FrameworkRectangle} has
+   * the same line y coordinates with inaccuracy as the other one
    *
    * @param rectangle specified rectangular area
    * @return true, if this rectangle stands on the same line
    * horizontally with the specified rectangular area
    */
-  public boolean onTheSameLineHorizontallyWithYInaccuracy(FrameworkRectangle rectangle, double yInaccuracy) {
+  public boolean hasSameYCoordinatesWithYInaccuracy(
+          FrameworkRectangle rectangle,
+          double yInaccuracy
+  ) {
     if (rectangle == null) return false;
     return Math.abs(this.getMinY() - rectangle.getMinY()) <= yInaccuracy &&
             Math.abs(this.getMaxY() - rectangle.getMaxY()) <= yInaccuracy;
@@ -403,7 +407,10 @@ public class FrameworkRectangle {
    * @param rectangle specified rectangular area
    * @return list of rectangles
    */
-  public List<FrameworkRectangle> cut(FrameworkRectangle rectangle, double xInaccuracy) {
+  public List<FrameworkRectangle> cut(
+          FrameworkRectangle rectangle,
+          double xInaccuracy
+  ) {
     if (Math.abs(this.getMinX() - rectangle.getMinX()) <= xInaccuracy &&
             Math.abs(this.getMaxX() - rectangle.getMaxX()) <= xInaccuracy) {
       return Collections.emptyList();

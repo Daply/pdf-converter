@@ -1,8 +1,6 @@
-package pdftohtml.domain.pdf.object.process.container;
+package pdftohtml.domain.pdf.object.basic.container;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PageLineTest {
 

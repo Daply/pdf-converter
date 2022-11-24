@@ -1,7 +1,7 @@
 package pdftohtml.processors;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import pdftohtml.domain.pdf.object.mediate.MiddlewareObject;
+import pdftohtml.domain.pdf.object.mediate.MediateObject;
 import pdftohtml.processors.basic.PageDataBlocksProcessor;
 import pdftohtml.processors.html.HtmlProcessor;
 
@@ -12,12 +12,9 @@ import java.util.List;
 
 public class MainProcessor {
 
-    private List<MiddlewareObject> middlewareObjects = new ArrayList<>();
-
-    private SkeletonsProcessor processor;
+    private List<MediateObject> mediateObjects = new ArrayList<>();
 
     public MainProcessor() {
-        this.processor = new SkeletonsProcessor();
     }
 
     public void process(String path) throws IOException {
@@ -34,7 +31,7 @@ public class MainProcessor {
             //middlewareObjects.addAll(this.processor.getPageMiddlewareObjects());
         }
         HtmlProcessor htmlProcessor = new HtmlProcessor();
-        String result = htmlProcessor.process(middlewareObjects);
+        String result = htmlProcessor.process(mediateObjects);
         //System.out.println(result);
     }
 

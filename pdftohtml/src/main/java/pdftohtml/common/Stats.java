@@ -2,7 +2,7 @@ package pdftohtml.common;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import pdftohtml.domain.framework.FrameworkRectangle;
+import pdftohtml.domain.common.FrameworkRectangle;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Stats {

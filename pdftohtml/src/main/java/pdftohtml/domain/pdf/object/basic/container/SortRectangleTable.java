@@ -1,4 +1,4 @@
-package pdftohtml.domain.pdf.object.process.container;
+package pdftohtml.domain.pdf.object.basic.container;
 
 import lombok.Data;
 

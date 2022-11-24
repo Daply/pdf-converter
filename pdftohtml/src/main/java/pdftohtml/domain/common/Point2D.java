@@ -1,4 +1,4 @@
-package pdftohtml.domain.framework;
+package pdftohtml.domain.common;
 
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
