@@ -1,10 +1,10 @@
 package pdftohtml;
 
 import pdftohtml.domain.common.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.basic.PdfDocumentObjectType;
-import pdftohtml.domain.pdf.object.basic.TextObject;
-import pdftohtml.domain.pdf.object.basic.container.PageLine;
+import pdftohtml.domain.pdf.object.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.text.TextObject;
+import pdftohtml.domain.pdf.object.container.PageLine;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ public class TestUtils {
         return rectangles.stream().map(rectangle -> {
             PageLine line = new PageLine();
             line.addObject(
-                    TestUtils.createMockPdfTextObject(PdfDocumentObjectType.SIMPLE_TEXT, FrameworkRectangle.EMPTY)
+                    TestUtils.createMockPdfTextObject(PdfDocumentObjectType.TEXT, FrameworkRectangle.EMPTY)
             );
             line.setRectangle(rectangle);
             return line;
@@ -36,7 +36,7 @@ public class TestUtils {
 
     public static List<PdfDocumentObject> createMockPdfTextObjectsList(List<FrameworkRectangle> rectangles) {
         return rectangles.stream().map(rectangle ->
-                createMockPdfTextObject(PdfDocumentObjectType.SIMPLE_TEXT, rectangle))
+                createMockPdfTextObject(PdfDocumentObjectType.TEXT, rectangle))
                 .collect(Collectors.toList());
     }
 

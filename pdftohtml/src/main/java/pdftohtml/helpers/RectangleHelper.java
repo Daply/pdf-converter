@@ -4,9 +4,9 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.text.TextPosition;
 import pdftohtml.common.Properties;
 import pdftohtml.domain.common.FrameworkRectangle;
-import pdftohtml.domain.pdf.object.basic.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.basic.PdfDocumentObjectType;
-import pdftohtml.domain.pdf.object.basic.TextObject;
+import pdftohtml.domain.pdf.object.PdfDocumentObject;
+import pdftohtml.domain.pdf.object.PdfDocumentObjectType;
+import pdftohtml.domain.pdf.object.text.TextObject;
 
 import java.util.List;
 
@@ -274,7 +274,7 @@ public class RectangleHelper {
             TextPosition textPosition
     ) {
         float betweenMinX = (float) previousObject.getRectangle().getMaxX();
-        if (previousObject.getObjectType().equals(PdfDocumentObjectType.SIMPLE_TEXT) &&
+        if (previousObject.getObjectType().equals(PdfDocumentObjectType.TEXT) &&
                 ((TextObject)previousObject).getText().isBlank()) {
             betweenMinX = (float) previousObject.getRectangle().getMinX();
         }

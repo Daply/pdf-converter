@@ -1,10 +1,9 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdf.object.mediate.MediateObject;
-import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
-import pdftohtml.domain.pdf.object.mediate.text.TextParagraph;
-import pdftohtml.domain.pdf.object.basic.TextObject;
+import pdftohtml.domain.pdf.object.deprecated.MediateObject;
+import pdftohtml.domain.pdf.object.deprecated.MediateObjectType;
+import pdftohtml.domain.pdf.object.text.TextObject;
 
 import java.util.Stack;
 
@@ -17,15 +16,15 @@ public class ParagraphProcessor extends HtmlTagProcessor {
         validate(mediateObject);
 
         this.innerTags = new Stack<>();
-        TextParagraph textParagraph = (TextParagraph) mediateObject;
+//        Text text = (Text) mediateObject;
         StringBuilder content = new StringBuilder();
         content.append(HtmlTag.getParagraphOpen());
-        for (TextObject textObject: textParagraph.getTextObjects()) {
-            String tags = openTags(textObject);
-            content.append(tags)
-                   .append(textObject.getText());
-            content.append(closeTags());
-        }
+//        for (TextObject textObject: text.getTextObjects()) {
+//            String tags = openTags(textObject);
+//            content.append(tags)
+//                   .append(textObject.getText());
+//            content.append(closeTags());
+//        }
         content.append(HtmlTag.getParagraphClose());
         return content.toString();
     }

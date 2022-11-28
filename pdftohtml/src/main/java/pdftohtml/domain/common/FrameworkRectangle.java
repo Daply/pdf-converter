@@ -1,6 +1,7 @@
 package pdftohtml.domain.common;
 
 import lombok.Getter;
+import pdftohtml.common.Properties;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -447,6 +448,15 @@ public class FrameworkRectangle {
       return Arrays.asList(leftRectangle, rightRectangle);
     }
     return Collections.emptyList();
+  }
+
+  public FrameworkRectangle getEnlargedRectangle(float inaccuracy) {
+    return new FrameworkRectangle(
+            this.minX + inaccuracy,
+            this.minY + inaccuracy,
+            this.width + inaccuracy,
+            this.height + inaccuracy
+            );
   }
 
   public static FrameworkRectangle convertFromPdfRectangle(Rectangle rectangle) {

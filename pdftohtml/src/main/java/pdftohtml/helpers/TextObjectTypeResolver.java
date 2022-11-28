@@ -1,6 +1,6 @@
 package pdftohtml.helpers;
 
-import pdftohtml.domain.pdf.object.basic.TextObjectType;
+import pdftohtml.domain.pdf.object.text.TextObjectType;
 
 public class TextObjectTypeResolver {
 

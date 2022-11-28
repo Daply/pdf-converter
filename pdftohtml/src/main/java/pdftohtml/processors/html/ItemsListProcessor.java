@@ -1,10 +1,10 @@
 package pdftohtml.processors.html;
 
 import pdftohtml.domain.htmltags.HtmlTag;
-import pdftohtml.domain.pdf.object.mediate.MediateObject;
-import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
-import pdftohtml.domain.pdf.object.mediate.list.ItemsList;
-import pdftohtml.domain.pdf.object.mediate.list.ItemsListRowContent;
+import pdftohtml.domain.pdf.object.deprecated.MediateObject;
+import pdftohtml.domain.pdf.object.deprecated.MediateObjectType;
+import pdftohtml.domain.pdf.object.composite.list.ItemsList;
+import pdftohtml.domain.pdf.object.composite.list.ItemsListRowContent;
 
 public class ItemsListProcessor extends HtmlTagProcessor {
 

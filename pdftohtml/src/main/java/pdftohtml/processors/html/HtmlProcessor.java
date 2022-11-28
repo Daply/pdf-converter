@@ -1,7 +1,7 @@
 package pdftohtml.processors.html;
 
-import pdftohtml.domain.pdf.object.mediate.MediateObject;
-import pdftohtml.domain.pdf.object.mediate.MediateObjectType;
+import pdftohtml.domain.pdf.object.deprecated.MediateObject;
+import pdftohtml.domain.pdf.object.deprecated.MediateObjectType;
 
 import java.util.List;
 

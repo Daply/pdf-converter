@@ -1,8 +1,8 @@
 package pdftohtml.processors;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import pdftohtml.domain.pdf.object.mediate.MediateObject;
-import pdftohtml.processors.basic.PageDataBlocksProcessor;
+import pdftohtml.domain.pdf.object.deprecated.MediateObject;
+import pdftohtml.processors.pdf.objects.composite.PageDataBlocksProcessor;
 import pdftohtml.processors.html.HtmlProcessor;
 
 import java.io.File;
