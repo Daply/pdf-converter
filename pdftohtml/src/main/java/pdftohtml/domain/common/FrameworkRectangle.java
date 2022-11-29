@@ -350,7 +350,8 @@ public class FrameworkRectangle {
   public boolean isBeforeHorizontallyWithXInaccuracy(FrameworkRectangle rectangle, double xInaccuracy) {
     if (rectangle == null) return false;
     return this.getMinX() < rectangle.getMinX() &&
-            this.getMaxX() <= rectangle.getMinX() + xInaccuracy;
+            (this.getMaxX() <= rectangle.getMinX() + xInaccuracy ||
+                    this.getMaxX() <= rectangle.getMinX() - xInaccuracy);
   }
 
   /**
@@ -365,7 +366,8 @@ public class FrameworkRectangle {
   public boolean isAfterHorizontallyWithXInaccuracy(FrameworkRectangle rectangle, double xInaccuracy) {
     if (rectangle == null) return false;
     return this.getMaxX() > rectangle.getMaxX() &&
-            this.getMinX() >= rectangle.getMaxX() + xInaccuracy;
+            (this.getMinX() >= rectangle.getMaxX() + xInaccuracy ||
+                    this.getMinX() >= rectangle.getMaxX() - xInaccuracy);
   }
 
   /**
@@ -451,9 +453,12 @@ public class FrameworkRectangle {
   }
 
   public FrameworkRectangle getEnlargedRectangle(float inaccuracy) {
+    if (this.width <= inaccuracy * 2 || this.height <= inaccuracy * 2) {
+      return this;
+    }
     return new FrameworkRectangle(
-            this.minX + inaccuracy,
-            this.minY + inaccuracy,
+            this.minX - inaccuracy,
+            this.minY - inaccuracy,
             this.width + inaccuracy,
             this.height + inaccuracy
             );

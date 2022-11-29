@@ -122,51 +122,6 @@ public class CompositeObjectsProcessor {
         return skeletons;
     }
 
-    private void defineMediateObject(
-            List<Block> blocks,
-            List<Divider> sameYMinDividers
-    ) {
-        // 1. define table
-        sameYMinDividers.forEach(divider -> {
-            blocks.forEach(block -> {
-                if (block.getRectangle()
-                        .isBeforeHorizontallyWithXInaccuracy(
-                                divider.getRectangle(),
-                                Properties.xInaccuracy
-                        )) {
-                    // TODO
-                    if (block.getLines().size() == 1) {
-                        PageLine line = block.getLines().get(0);
-                        if (line.getObjects().size() == 1) {
-                            PdfDocumentObject object = line.getObjects().get(0);
-                            if (object instanceof TextObject &&
-                                    ((TextObject) object).getTextObjectType() == TextObjectType.LIST_BULLET) {
-                                ItemsListBullet bullet = createListBulletFromTextObject((TextObject) object);
-
-                            }
-                        }
-                    }
-                }
-                if (block.getRectangle()
-                        .isAfterHorizontallyWithXInaccuracy(
-                                divider.getRectangle(),
-                                Properties.xInaccuracy
-                        )) {
-
-                }
-            });
-        });
-
-        // 2. define lists from tables
-    }
-
-    private ItemsListBullet createListBulletFromTextObject(TextObject object) {
-        ItemsListBullet bullet = new ItemsListBullet();
-        bullet.setBulletCharacter(object.getText());
-        bullet.setFontFamily(object.getFontFamily());
-        return bullet;
-    }
-
     private void drawSkeletonsForTest(
             int pageIndex,
             List<TableSkeleton> skeletons

@@ -30,9 +30,13 @@ public class TableCell extends PdfDocumentObject {
     }
 
     public void resolveRectangle() {
-        AtomicReference<FrameworkRectangle> resultRectangle = new AtomicReference<>(new FrameworkRectangle());
+        AtomicReference<FrameworkRectangle> resultRectangle = new AtomicReference<>();
         objects.forEach(object -> {
-           resultRectangle.set(combineTwoRectangles(resultRectangle.get(), object.getRectangle()));
+            if (resultRectangle.get() == null) {
+                resultRectangle.set(object.getRectangle());
+            } else {
+                resultRectangle.set(combineTwoRectangles(resultRectangle.get(), object.getRectangle()));
+            }
         });
         this.rectangle = resultRectangle.get();
     }

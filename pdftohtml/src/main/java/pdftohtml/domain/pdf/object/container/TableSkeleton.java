@@ -63,6 +63,7 @@ public class TableSkeleton extends PdfDocumentObject {
     }
 
     public Table convertToTable() {
+        Divider lastDivider = this.dividers.get(this.dividers.size() - 1);
         Table table = new Table();
         List<TableRow> rows = new ArrayList<>();
         this.blocks.forEach(block -> {
@@ -85,7 +86,8 @@ public class TableSkeleton extends PdfDocumentObject {
                             .isBeforeHorizontallyWithXInaccuracy(
                                     divider.getRectangle(),
                                     Properties.xInaccuracy
-                            )) {
+                            )
+                    ) {
                        cell.addObject(b);
                    }
                 });
@@ -94,6 +96,27 @@ public class TableSkeleton extends PdfDocumentObject {
                     cells.add(cell);
                 }
             }
+
+            ////
+            TableCell cell = new TableCell();
+            sameYMinBlocks.forEach(b -> {
+                if (b.getRectangle()
+                        .isAfterHorizontallyWithXInaccuracy(
+                                lastDivider.getRectangle(),
+                                Properties.xInaccuracy
+                        )
+                ) {
+                    cell.addObject(b);
+                }
+            });
+            if (!cell.isEmpty()) {
+                cell.resolveRectangle();
+                cells.add(cell);
+            }
+            ////
+
+
+
             if (!cells.isEmpty()) {
                 TableRow row = new TableRow();
                 row.setCells(cells);
@@ -102,6 +125,7 @@ public class TableSkeleton extends PdfDocumentObject {
             }
         });
         table.setRows(rows);
+        table.resolveRectangle();
         return table;
     }
 }
