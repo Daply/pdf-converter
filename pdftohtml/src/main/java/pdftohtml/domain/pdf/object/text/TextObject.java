@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pdftohtml.domain.pdf.object.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.PdfDocumentObjectType;
-import pdftohtml.helpers.TextObjectTypeResolver;
+import pdftohtml.common.helpers.TextObjectTypeResolver;
 
 import java.util.Arrays;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package pdftohtml.helpers;
+package pdftohtml.common.helpers;
 
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.text.TextPosition;
@@ -187,7 +187,7 @@ public class RectangleHelper {
      * @param rectangle2 second rectangle
      * @return true, if first rectangle has almost the same x coordinate start
      */
-    public static boolean haveTheSameStart(
+    public static boolean haveTheSameXMinCoordinates(
             FrameworkRectangle rectangle1,
             FrameworkRectangle rectangle2
     ) {

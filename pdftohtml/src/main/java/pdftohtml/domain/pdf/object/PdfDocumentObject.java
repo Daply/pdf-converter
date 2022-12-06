@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pdftohtml.domain.common.FrameworkRectangle;
 
-import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
+import static pdftohtml.common.helpers.RectangleHelper.combineTwoRectangles;
 
 @Getter
 @Setter

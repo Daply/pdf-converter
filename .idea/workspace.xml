@@ -5,14 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1651d066-b5a4-4e26-9d4e-9db2bbf60470" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/collections/ListUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/collections/Pair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/common/FrameworkRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/common/FrameworkRectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/PdfDocumentObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/PdfDocumentObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/Table.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/TableCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/TableCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/TableRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/TableRow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/PageLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/PageLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/text/TextObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/text/TextObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/RectangleHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/helpers/RectangleHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/TextObjectTypeResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/helpers/TextObjectTypeResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/LineObjectsPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/helpers/testing/LineObjectsPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/helpers/testing/PdfPageDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/common/helpers/testing/PdfPageDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/composite/CompositeObjectsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/composite/CompositeObjectsProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/resources/page.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/composite/PageDataBlocksProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/composite/PageDataBlocksProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/dividers/PageObjectsDividersProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/dividers/PageObjectsDividersProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/text/PageTextObjectsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/text/PageTextObjectsProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/text/PdfTextObjectsCreationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/text/PdfTextObjectsCreationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/utils/Utils.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DocTooller-master/Docvert" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reciper" />
     <property name="settings.editor.selected.configurable" value="IntelliLang.Configuration" />
   </component>
   <component name="RecentsManager">
@@ -106,38 +119,33 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/processors/pdf/objects/composite/CompositeObjectsProcessor.java</url>
-          <line>62</line>
+          <line>58</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java</url>
-          <line>69</line>
+          <line>72</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java</url>
-          <line>81</line>
+          <line>84</line>
           <option name="timeStamp" value="138" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java</url>
-          <line>84</line>
+          <line>87</line>
           <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/container/TableSkeleton.java</url>
-          <line>93</line>
+          <line>96</line>
           <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/common/FrameworkRectangle.java</url>
-          <line>366</line>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/pdftohtml/src/main/java/pdftohtml/domain/pdf/object/composite/table/TableCell.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="146" />
+          <line>55</line>
+          <option name="timeStamp" value="147" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

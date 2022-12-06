@@ -405,6 +405,20 @@ public class FrameworkRectangle {
   }
 
   /**
+   * Checks if the this rectangle has the same Y minimum coordinate with
+   * specified inaccuracy as the compared rectangle
+
+   * @param rectangle rectangle to compare with
+   * @return true, if first rectangle has almost the same x coordinate start
+   */
+  public boolean hasTheSameYMinCoordinate(
+          FrameworkRectangle rectangle
+  ) {
+    if (rectangle == null) return false;
+    return Math.abs(this.getMinY() - rectangle.getMinY()) <= Properties.yInaccuracy;
+  }
+
+  /**
    * Cut rectangle by the other rectangle
    *
    * @param rectangle specified rectangular area

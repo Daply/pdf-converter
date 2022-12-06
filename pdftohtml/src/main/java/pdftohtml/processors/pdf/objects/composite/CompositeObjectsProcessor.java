@@ -6,12 +6,7 @@ import pdftohtml.common.Properties;
 import pdftohtml.domain.common.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.composite.table.Table;
 import pdftohtml.domain.pdf.object.container.TableSkeleton;
-import pdftohtml.domain.pdf.object.composite.list.ItemsListBullet;
-import pdftohtml.domain.pdf.object.PdfDocumentObject;
-import pdftohtml.domain.pdf.object.text.TextObject;
-import pdftohtml.domain.pdf.object.text.TextObjectType;
 import pdftohtml.domain.pdf.object.container.Block;
-import pdftohtml.domain.pdf.object.container.PageLine;
 import pdftohtml.domain.pdf.object.template.Divider;
 
 import java.awt.*;
@@ -21,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
+import static pdftohtml.common.helpers.testing.PdfPageDrawer.drawRectangle;
 
 public class CompositeObjectsProcessor {
 
@@ -60,6 +55,7 @@ public class CompositeObjectsProcessor {
         List<Table> tables = skeletons.stream()
                 .map(TableSkeleton::convertToTable)
                 .collect(Collectors.toList());
+        tables.forEach(Table::mergeCellsFromAdjacentRows);
         drawTableForTest(pageIndex, tables);
     }
 

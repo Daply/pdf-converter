@@ -1,6 +1,7 @@
 package pdftohtml.domain.pdf.object.composite.table;
 
 import lombok.Getter;
+import lombok.Setter;
 import pdftohtml.domain.common.FrameworkRectangle;
 import pdftohtml.domain.pdf.object.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.PdfDocumentObjectType;
@@ -9,12 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
+import static pdftohtml.common.helpers.RectangleHelper.combineTwoRectangles;
 
+@Getter
 public class TableCell extends PdfDocumentObject {
 
-    @Getter
-    private List<PdfDocumentObject> objects;
+    private final List<PdfDocumentObject> objects;
+
+    /**
+     * Row order number in a table
+     */
+    @Setter
+    private int rowNumber;
+
+    /**
+     * Cell order number in a row
+     */
+    @Setter
+    private int number;
 
     public TableCell() {
         this.objects = new ArrayList<>();
@@ -23,6 +36,16 @@ public class TableCell extends PdfDocumentObject {
 
     public void addObject(PdfDocumentObject object) {
         this.objects.add(object);
+    }
+
+    public void addAllObjects(List<PdfDocumentObject> objects) {
+        this.objects.addAll(objects);
+        resolveRectangle();
+    }
+
+    public void cleanObjects() {
+        this.objects.clear();
+        this.rectangle = new FrameworkRectangle();
     }
 
     public boolean isEmpty() {

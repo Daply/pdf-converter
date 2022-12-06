@@ -10,13 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
+import static pdftohtml.common.helpers.RectangleHelper.combineTwoRectangles;
 
+@Getter
+@Setter
 public class TableRow extends PdfDocumentObject {
 
-    @Getter
-    @Setter
     private List<TableCell> cells;
+
+    /**
+     * Row order number in a table
+     */
+    private int number;
 
     public TableRow() {
         this.cells = new ArrayList<>();

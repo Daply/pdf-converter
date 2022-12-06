@@ -1,4 +1,4 @@
-package pdftohtml.helpers.testing;
+package pdftohtml.common.helpers.testing;
 
 import pdftohtml.domain.pdf.object.PdfDocumentObject;
 import pdftohtml.domain.pdf.object.container.PageLine;

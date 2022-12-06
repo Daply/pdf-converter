@@ -1,4 +1,4 @@
-package pdftohtml.helpers;
+package pdftohtml.common.helpers;
 
 import pdftohtml.domain.pdf.object.text.TextObjectType;
 

@@ -10,8 +10,8 @@ import pdftohtml.domain.pdf.object.text.TextObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pdftohtml.helpers.RectangleHelper.combineTwoRectangles;
-import static pdftohtml.helpers.RectangleHelper.subtractRectangle;
+import static pdftohtml.common.helpers.RectangleHelper.combineTwoRectangles;
+import static pdftohtml.common.helpers.RectangleHelper.subtractRectangle;
 
 @Getter
 public class PageLine extends PdfDocumentObject {

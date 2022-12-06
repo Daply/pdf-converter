@@ -26,7 +26,7 @@ import pdftohtml.domain.pdf.object.container.PageLine;
 import pdftohtml.domain.pdf.object.text.LinkObject;
 import pdftohtml.domain.pdf.object.text.TextObject;
 import pdftohtml.domain.pdf.object.text.TextPositionStyleWrapper;
-import pdftohtml.helpers.testing.PdfPageDrawer;
+import pdftohtml.common.helpers.testing.PdfPageDrawer;
 
 import java.awt.*;
 import java.io.IOException;
@@ -36,7 +36,7 @@ import java.util.List;
 import static pdftohtml.common.Globals.*;
 import static pdftohtml.common.Stats.maximumDistanceBetweenLines;
 import static pdftohtml.common.Stats.minimumDistanceBetweenLines;
-import static pdftohtml.helpers.RectangleHelper.*;
+import static pdftohtml.common.helpers.RectangleHelper.*;
 
 /**
  * Parses pdf document page and gets all text data from it.
@@ -236,7 +236,7 @@ public class PageTextObjectsProcessor extends PDFTextStripper {
         currentLine.addAllObjects(lineObjects);
 
         if (previousLineRectangle != null &&
-                (!haveTheSameStart(previousLineRectangle, currentLine.getRectangle()) ||
+                (!haveTheSameXMinCoordinates(previousLineRectangle, currentLine.getRectangle()) ||
                         spaceByYBetweenTwoRectanglesIsMore(
                                 previousLineRectangle,
                                 currentLine.getRectangle(),

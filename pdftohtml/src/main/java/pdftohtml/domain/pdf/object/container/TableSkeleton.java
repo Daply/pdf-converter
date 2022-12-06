@@ -14,6 +14,7 @@ import pdftohtml.domain.pdf.object.template.Divider;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
@@ -66,6 +67,8 @@ public class TableSkeleton extends PdfDocumentObject {
         Divider lastDivider = this.dividers.get(this.dividers.size() - 1);
         Table table = new Table();
         List<TableRow> rows = new ArrayList<>();
+        AtomicInteger rowNumber = new AtomicInteger(0);
+        AtomicInteger cellNumber = new AtomicInteger(0);
         this.blocks.forEach(block -> {
             List<Block> sameYMinBlocks = new ArrayList<>();
             sameYMinBlocks.add(block);
@@ -111,6 +114,8 @@ public class TableSkeleton extends PdfDocumentObject {
             });
             if (!cell.isEmpty()) {
                 cell.resolveRectangle();
+                cell.setNumber(cellNumber.incrementAndGet());
+                cell.setRowNumber(rowNumber.get());
                 cells.add(cell);
             }
             ////
@@ -121,6 +126,7 @@ public class TableSkeleton extends PdfDocumentObject {
                 TableRow row = new TableRow();
                 row.setCells(cells);
                 row.resolveRectangle();
+                row.setNumber(rowNumber.incrementAndGet());
                 rows.add(row);
             }
         });

@@ -1,4 +1,4 @@
-package pdftohtml.helpers.testing;
+package pdftohtml.common.helpers.testing;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;

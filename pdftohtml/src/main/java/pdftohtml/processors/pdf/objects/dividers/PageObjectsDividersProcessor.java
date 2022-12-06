@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static pdftohtml.helpers.RectangleHelper.*;
-import static pdftohtml.helpers.testing.PdfPageDrawer.drawRectangle;
+import static pdftohtml.common.helpers.RectangleHelper.*;
+import static pdftohtml.common.helpers.testing.PdfPageDrawer.drawRectangle;
 
 /**
  * Class for identifying empty spaces

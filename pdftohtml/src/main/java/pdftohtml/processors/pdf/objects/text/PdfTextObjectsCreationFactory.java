@@ -12,7 +12,7 @@ import pdftohtml.domain.pdf.object.text.TextPositionStyleWrapper;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static pdftohtml.helpers.RectangleHelper.createTextPositionRectangle;
+import static pdftohtml.common.helpers.RectangleHelper.createTextPositionRectangle;
 
 public class PdfTextObjectsCreationFactory {
 
